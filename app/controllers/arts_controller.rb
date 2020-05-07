@@ -16,6 +16,7 @@ class ArtsController < ApplicationController
 
   def show
     @user = @art.user
+    @comment = Comment.new
   end
 
   def edit

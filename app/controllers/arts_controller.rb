@@ -1,4 +1,5 @@
 class ArtsController < ApplicationController
+  before_action :set_art, only: [:show, :edit, :update, :destroy]
   def index
     @arts = Art.all
   end
@@ -8,34 +9,35 @@ class ArtsController < ApplicationController
   end
 
   def create
-    @art = Art.new(art_params)
+    @art = current_user.arts.new(art_params)
     @art.save
     redirect_to art_path(@art)
   end
 
   def show
-    @art = Art.find(params[:id])
+    @user = @art.user
   end
 
   def edit
-    @art = Art.find(params[:id])
   end
 
   def update
-    art = Art.find(params[:id])
-    art.update(art_params)
-    redirect_to art_path(art)
+    @art.update(art_params)
+    redirect_to art_path(@art)
   end
 
   def destroy
-    art = Art.find(params[:id])
-    art.destroy
+    @art.destroy
     redirect_to arts_path
   end
 
   private
   def art_params
-    params.require(:art).permit(:title, :detail, :image, :tag_id)
+    params.require(:art).permit(:title, :detail, :image, { :tag_ids=> [] })
+  end
+
+  def set_art
+    @art = Art.find(params[:id])
   end
 
 end

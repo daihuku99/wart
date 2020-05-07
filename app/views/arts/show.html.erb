@@ -1,2 +1,24 @@
-<h1>Arts#show</h1>
-<p>Find me in app/views/arts/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-3">
+      <%= render 'users/template', user: @user %>
+    </div>
+    <div class="col-xs-9">
+      <div class="art-container">
+        <div class="row">
+          <div class="col-xs-3">
+            <%= attachment_image_tag @art, :image, :fill, 100, 100, format: 'jpeg' %>
+          </div>
+          <div class="col-xs-4">
+            <h3><%= @art.title %></h3><br>
+            <p><%= @art.detail %></p>
+            <% if @user == current_user %>
+              <%= link_to '編集する', edit_art_path(@art), class: 'btn btn-default' %>
+            <% end %>
+          </div>
+        </div>
+        <div class="row"></div>
+      </div>
+    </div>
+  </div>
+</div>

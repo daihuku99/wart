@@ -1,2 +1,10 @@
-<h1>Arts#index</h1>
-<p>Find me in app/views/arts/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="arts-container">
+      <% @arts.each do |art| %>
+        <%= attachment_image_tag art, :image, :fill, 200, 200, format: 'jpeg' %><br>
+        <h6><%= link_to art.title, art_path(art) %></h6>
+      <% end %>
+    </div>
+  </div>
+</div>

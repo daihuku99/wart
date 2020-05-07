@@ -5,11 +5,31 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'public/application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'public/application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <header>
+      <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="header-logo">LOGO</div>
+        <ul class="nav navbar-nav navbar-right">
+          <% if user_signed_in? %>
+            <li><%= link_to 'my page', user_path(current_user) %></li>
+            <li><%= link_to 'Arts', arts_path %></li>
+            <li><%= link_to 'Artists', users_path %></li>
+            <li><%= link_to 'Exhibitions', exhibitions_path %></li>
+            <li><%= link_to 'logout', destroy_user_session_path, method: :delete %></li>
+          <% else %>
+            <li><%= link_to 'Arts', arts_path %></li>
+            <li><%= link_to 'Artists', users_path %></li>
+            <li><%= link_to 'Exhibitions', exhibitions_path %></li>
+            <li><%= link_to 'Login', new_user_session_path %></li>
+            <li><%= link_to 'Sign up', new_user_registration_path %></li>
+          <% end %>
+        </ul>
+      </nav>
+    </header>
     <%= yield %>
   </body>
 </html>

@@ -6,18 +6,34 @@
     <div class="col-xs-9">
       <div class="art-container">
         <div class="row">
-          <div class="col-xs-3">
-            <%= attachment_image_tag @art, :image, :fill, 100, 100, format: 'jpeg' %>
+          <div class="col-xs-5">
+            <%= attachment_image_tag @art, :image, :fill, 300, 300, format: 'jpeg' %><br>
+            <% @art.comments.each do |comment| %>
+              <%= comment.comment %>
+              <%= comment.user.name %>
+              <%= comment.created_at.strftime('%Y/%m/%d') %>
+              <% if comment.user == current_user %>
+                <%= link_to '削除する', art_comment_path(@art, comment), method: :delete, "data-confirm" => "本当に削除しますか？", class: 'btn btn-default' %><br>
+              <% end %>
+            <% end %>
           </div>
           <div class="col-xs-4">
             <h3><%= @art.title %></h3><br>
             <p><%= @art.detail %></p>
+            <div id="art_<%= @art.id %>">
+              <%= render partial: 'likes/like', locals: { art: @art } %>
+            </div>
             <% if @user == current_user %>
               <%= link_to '編集する', edit_art_path(@art), class: 'btn btn-default' %>
             <% end %>
+            <div class="form comment-form">
+              <%= form_with model: @comment, url: art_comments_path(@art), method: :post, local: true do |f| %>
+                <%= f.text_area :comment %>
+                <%= f.submit 'コメントする', class: 'btn btn-default' %>
+              <% end %>
+            </div>
           </div>
         </div>
-        <div class="row"></div>
       </div>
     </div>
   </div>

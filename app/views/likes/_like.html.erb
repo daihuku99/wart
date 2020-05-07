@@ -1,0 +1,11 @@
+<% if art.liked_by?(current_user) %>
+  <%= link_to art_likes_path(art), method: :delete, remote: true do %>
+    <span class="glyphicon glyphicon-heart" aria-hidden="true" style="color: red;"></span>
+    <%= art.likes.count %>いいね
+  <% end %>
+<% else %>
+  <%= link_to art_likes_path(art), method: :post, remote: true do %>
+    <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+    <%= art.likes.count %>いいね
+  <% end %>
+<% end %>

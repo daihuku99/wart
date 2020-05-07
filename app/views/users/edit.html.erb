@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row">
+    <%= form_with model: current_user, url: user_path(current_user), method: :patch, local: true do |f| %>
+      <%= f.attachment_field :profile_image %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+
+      <%= f.label :introduction %>
+      <%= f.text_field :introduction %>
+
+      <%= f.radio_button :user_status, :閲覧のみ %>
+      <%= f.label :閲覧のみ %>
+
+      <%= f.radio_button :user_status, :投稿機能あり %>
+      <%= f.label :投稿機能あり %>
+
+      <%= f.submit '更新する', class: 'btn btn-default' %>
+    <% end %>
+  </div>
+</div>

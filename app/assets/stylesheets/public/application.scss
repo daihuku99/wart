@@ -13,3 +13,17 @@
  *= require_tree .
  *= require_self
  */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+
+/*ヘッダーの記述*/
+header {
+  height: 70px;
+}
+
+/* マイページのテンプレートの記述 */
+.profile-container {
+  
+}

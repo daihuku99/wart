@@ -4,7 +4,10 @@
       <%= render 'users/template', user: @user %>
     </div>
     <div class="col-xs-9">
-      
+      <% @user.arts.each do |art| %>
+        <%= attachment_image_tag art, :image, :fill, 100, 100, format: 'jpeg' %>
+        <%= link_to art.title, art_path(art) %>
+      <% end %>
     </div>
   </div>
 </div>

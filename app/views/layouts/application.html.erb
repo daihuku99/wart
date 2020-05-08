@@ -12,20 +12,20 @@
   <body>
     <header>
       <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="header-logo">LOGO</div>
+        <div class="navbar-brand">LOGO</div>
         <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>
-            <li><%= link_to 'my page', user_path(current_user) %></li>
-            <li><%= link_to 'Arts', arts_path %></li>
-            <li><%= link_to 'Artists', users_path %></li>
-            <li><%= link_to 'Exhibitions', exhibitions_path %></li>
-            <li><%= link_to 'logout', destroy_user_session_path, method: :delete %></li>
+            <li><%= link_to 'my page', user_path(current_user), class: "glyphicon glyphicon-home" %></li>
+            <li><%= link_to 'Arts', arts_path, class: "glyphicon glyphicon-picture" %></li>
+            <li><%= link_to 'Artists', users_path, class: "glyphicon glyphicon-user" %></li>
+            <li><%= link_to 'Exhibitions', exhibitions_path, class: "glyphicon glyphicon-tower" %></li>
+            <li><%= link_to 'logout', destroy_user_session_path, method: :delete, class: "glyphicon glyphicon-log-out" %></li>
           <% else %>
-            <li><%= link_to 'Arts', arts_path %></li>
-            <li><%= link_to 'Artists', users_path %></li>
-            <li><%= link_to 'Exhibitions', exhibitions_path %></li>
-            <li><%= link_to 'Login', new_user_session_path %></li>
-            <li><%= link_to 'Sign up', new_user_registration_path %></li>
+            <li><%= link_to 'Arts', arts_path, class: "glyphicon glyphicon-picture" %></li>
+            <li><%= link_to 'Artists', users_path, class: "glyphicon glyphicon-user" %></li>
+            <li><%= link_to 'Exhibitions', exhibitions_path, class: "glyphicon glyphicon-tower" %></li>
+            <li><%= link_to 'Login', new_user_session_path, class: "glyphicon glyphicon-log-in" %></li>
+            <li><%= link_to 'Sign up', new_user_registration_path, class: "glyphicon glyphicon-heart-empty" %></li>
           <% end %>
         </ul>
       </nav>

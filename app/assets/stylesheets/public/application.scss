@@ -19,11 +19,13 @@
 
 
 /*ヘッダーの記述*/
-header {
-  height: 70px;
+
+body {
+  padding-top: 70px;
+}
+
+.nav {
+  margin-right: 20px;
 }
 
 /* マイページのテンプレートの記述 */
-.profile-container {
-  
-}

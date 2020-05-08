@@ -1,9 +1,9 @@
 
     <div class="profile-container">
         <%= attachment_image_tag user, :profile_image, :fill, 60, 60, format: 'jpeg', fallback: "no_image.jpeg", class: 'profile_image' %>
-        <%= user.name %>
-        <%= user.user_status %>
-        <%= user.introduction %>
+        <h3><%= user.name %></h3><br>
+        <h6><%= user.user_status %></h6>
+        <p><%= user.introduction %></p><br>
         <% if user == current_user %>
           <%= link_to '投稿する', new_art_path, class: 'btn btn-default' %>
           <%= link_to '編集する', edit_user_path(user), class: 'btn btn-default' %>

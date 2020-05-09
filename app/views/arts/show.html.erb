@@ -11,14 +11,20 @@
             <% @art.comments.each do |comment| %>
               <%= comment.comment %>
               <%= comment.user.name %>
-              <%= comment.created_at.strftime('%Y/%m/%d') %>
+              <%= comment.created_at.strftime('%Y/%m/%d') %><br>
               <% if comment.user == current_user %>
                 <%= link_to '削除する', art_comment_path(@art, comment), method: :delete, "data-confirm" => "本当に削除しますか？", class: 'btn btn-default' %><br>
               <% end %>
             <% end %>
           </div>
           <div class="col-xs-4">
-            <h3><%= @art.title %></h3><br>
+            <h3><%= @art.title %></h3>
+            <% if @user == current_user %>
+              <%= form_with model: @cart_art, url: cart_arts_path, method: :post, local: true do |f| %>
+                <%= hidden_field_tag :art_id, @art.id %>
+                <%= f.submit '展覧会に出す', class: 'btn btn-default' %>
+              <% end %>
+            <% end %>
             <p><%= @art.detail %></p>
             <div id="art_<%= @art.id %>">
               <%= render partial: 'likes/like', locals: { art: @art } %>

@@ -17,6 +17,7 @@ class ArtsController < ApplicationController
   def show
     @user = @art.user
     @comment = Comment.new
+    @cart_art = CartArt.new
   end
 
   def edit

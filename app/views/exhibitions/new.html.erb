@@ -1,2 +1,29 @@
-<h1>Exhibitions#new</h1>
-<p>Find me in app/views/exhibitions/new.html.erb</p>
+<div class="container">
+  <div class="row">
+    <% @cart_arts.each do |cart_art| %>
+      <%= attachment_image_tag cart_art.art, :image, :fill, 100, 100, format: 'jpeg' %>
+      <%= cart_art.art.title %>
+      <%= link_to '取り消す', cart_art_path(cart_art), class: 'btn btn-default' %>
+    <% end %>
+  </div>
+  <div class="row">
+    <%= form_with model: @exhibition, url: exhibitions_path, method: :post, local: true do |f| %>
+      <div class="col-xs-5">
+        <%= f.label :title %>
+        <%= f.text_field :title %><br>
+
+        <%= f.label :detail %>
+        <%= f.text_area :detail %>
+      </div>
+      <div class="col-xs-5">
+        <%= f.label :start_date %>
+        <%= f.datetime_select :start_date, {default: Date.today + 19.hour}, class: 'form-control form-control-inline' %>
+
+        <%= f.label :end_date %>
+        <%= f.datetime_select :end_date, {default: Date.today + 19.hour}, class: 'form-control form-control-inline' %>
+
+        <%= f.submit '決定する', class: 'btn btn-default' %>
+      </div>
+    <% end %>
+  </div>
+</div>

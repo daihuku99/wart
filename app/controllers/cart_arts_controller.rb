@@ -1,11 +1,14 @@
 class CartArtsController < ApplicationController
   def create
-    art = Art.find(params[:art_id])
+    art = Art.find(params[:art_id].to_i)
     cart_art = current_user.cart_arts.new
-    cart_art_art = art.id
-    p cart_art.errors
-    cart_art.save
-    redirect_to new_exhibition_path
+    cart_art.art_id = art.id
+    if cart_art.save
+      redirect_to new_exhibition_path
+    else
+      @arts = Art.all
+      redirect_to arts_path, notice: "追加に失敗しました"
+    end
   end
 
   def destroy
@@ -13,9 +16,4 @@ class CartArtsController < ApplicationController
 
   def empty
   end
-
-  # private
-  # def cart_art_params
-  #   params.require(:cart_art).permit(:art_id)
-  # end
 end

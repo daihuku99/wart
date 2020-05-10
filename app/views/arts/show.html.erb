@@ -24,6 +24,7 @@
                 <%= hidden_field_tag :art_id, @art.id %>
                 <%= f.submit '展覧会に出す', class: 'btn btn-default' %>
               <% end %>
+              <%= @art.id %>
             <% end %>
             <p><%= @art.detail %></p>
             <div id="art_<%= @art.id %>">

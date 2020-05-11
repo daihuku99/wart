@@ -14,6 +14,11 @@ class ExhibitionsController < ApplicationController
     exhibition = current_user.exhibitions.new(exhibition_params)
     exhibition.save
     redirect_to thanks_path(exhibition)
+    if exhibition.start_date == DateTime.now
+      current_user.cart_arts.each do |cart_art|
+        exhibition_art = current_user.exhibition_arts.new(art_id: cart_art.art.id)
+      end
+    end
   end
 
   def show

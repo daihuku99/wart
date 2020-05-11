@@ -1,6 +1,6 @@
 class ExhibitionsController < ApplicationController
   require 'date'
-  before_action :set_exhibition, only: [:show, :edit, :destroy]
+  before_action :set_exhibition, only: [:show, :edit, :destroy, :update]
   def index
     @exhibitions = Exhibition.all
   end
@@ -12,12 +12,13 @@ class ExhibitionsController < ApplicationController
 
   def create
     exhibition = current_user.exhibitions.new(exhibition_params)
-    exhibition.save
-    redirect_to thanks_path(exhibition)
-    if exhibition.start_date == DateTime.now
+    if exhibition.save
       current_user.cart_arts.each do |cart_art|
-        exhibition_art = current_user.exhibition_arts.new(art_id: cart_art.art.id)
+        exhibition_art = exhibition.exhibition_arts.new(art_id: cart_art.art.id)
+        exhibition_art.save
       end
+    current_user.cart_arts.destroy_all
+    redirect_to thanks_path(exhibition)
     end
   end
 
@@ -25,7 +26,15 @@ class ExhibitionsController < ApplicationController
     @exhibition = Exhibition.find(params[:id])
   end
 
+  def update
+    @exhibition.update(exhibition_params)
+    redirect_to exhibition_path(@exhibition)
+  end
+
   def destroy
+    exhibition = Exhibition.find(params[:id])
+    exhibition.destroy
+    redirect_to exhibitions_path
   end
 
   private

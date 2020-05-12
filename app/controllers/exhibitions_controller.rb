@@ -33,7 +33,7 @@ class ExhibitionsController < ApplicationController
     @exhibition = Exhibition.find(params[:id])
     @exhibition.exhibition_arts.each do |exhibition_art|
       @art = exhibition_art.art
-      next @art
+      return @art
     end
     @comment = Comment.new
   end

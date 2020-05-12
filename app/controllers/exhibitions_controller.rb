@@ -17,13 +17,25 @@ class ExhibitionsController < ApplicationController
         exhibition_art = exhibition.exhibition_arts.new(art_id: cart_art.art.id)
         exhibition_art.save
       end
-    current_user.cart_arts.destroy_all
-    redirect_to thanks_path(exhibition)
+      event = Event.new
+      event.title = exhibition.title
+      event.detail = exhibition.detail
+      event.event_type = 2
+      event.start_date = exhibition.start_date
+      event.end_date = exhibition.end_date
+      event.save
+      current_user.cart_arts.destroy_all
+      redirect_to thanks_path(exhibition)
     end
   end
 
   def show
     @exhibition = Exhibition.find(params[:id])
+    @exhibition.exhibition_arts.each do |exhibition_art|
+      @art = exhibition_art.art
+      next @art
+    end
+    @comment = Comment.new
   end
 
   def update

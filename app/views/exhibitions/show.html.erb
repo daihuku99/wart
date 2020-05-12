@@ -17,7 +17,16 @@
       </div>
       <div class="col-xs-7">
         <% @exhibition.exhibition_arts.each do |exhibition_art| %>
-          <%= attachment_image_tag exhibition_art.art, :image, :fill, 300, 300, format: 'jpeg' %>
+          <div class="js-modal-btn">
+            <%= attachment_image_tag exhibition_art.art, :image, :fill, 300, 300, format: 'jpeg' %>
+          </div>
+          <div class="modal js-modal">
+            <div class="modal-bg js-modal-close"></div>
+            <div class="modal-content">
+              <%= render 'arts/art', art: exhibition_art, comment: @comment %>
+              <p class="js-modal-close">Close</p>
+            </div>
+          </div>
           <h4><%= exhibition_art.art.title %></h4><h6><%= exhibition_art.art.user.name %></h6>
         <% end %>
       </div>

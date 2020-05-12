@@ -1,0 +1,19 @@
+  <div class="col-xs-5">
+    <%= attachment_image_tag art.art, :image, :fill, 300, 300, format: 'jpeg' %><br>
+    <% art.art.comments.each do |comment| %>
+      <div id="comments_<%= comment.id %>">
+        <%= render partial: 'comments/index', locals: {comment: comment, art: art} %>
+      </div>
+    <% end %>
+    <div id="comment"></div>
+  </div>
+  <div class="col-xs-4">
+    <h3><%= art.art.title %></h3>
+    <p><%= art.art.detail %></p>
+    <div id="art_<%= @art.id %>">
+      <%= render partial: 'likes/like', locals: { art: art } %>
+    </div>
+    <div class="form comment-form">
+      <%= render partial: 'comments/form', locals: { comment: comment, art: art } %>
+    </div>
+  </div>

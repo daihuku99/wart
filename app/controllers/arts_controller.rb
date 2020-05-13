@@ -10,7 +10,16 @@ class ArtsController < ApplicationController
 
   def create
     @art = current_user.arts.new(art_params)
-    @art.save
+    if @art.save
+      event = Event.new
+      event.user_id = current_user.id
+      event.title = @art.title
+      event.detail = @art.detail
+      event.event_type = 1
+      event.start_date = @art.created_at
+      event.end_date = @art.created_at
+      event.save
+    end
     redirect_to art_path(@art)
   end
 

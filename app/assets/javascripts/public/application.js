@@ -38,8 +38,9 @@ $(function () {
 
 $(function(){
   $('.js-modal-btn').on('click', function(){
-    var btnIndex = $(this).index();
-    $('.js-modal').eq(btnIndex).fadeIn();
+    var btnIndex = $(this).index(); - (btnIndex - 1)
+    console.log(btnIndex)
+    $('.js-modal').eq(btnIndex / 4).fadeIn();
     return false;
   });
   $('.js-modal-close').on('click', function(){

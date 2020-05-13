@@ -18,6 +18,7 @@ class ArtsController < ApplicationController
     @user = @art.user
     @comment = Comment.new
     @cart_art = CartArt.new
+    @events = Event.where(user_id: current_user.id)
   end
 
   def edit

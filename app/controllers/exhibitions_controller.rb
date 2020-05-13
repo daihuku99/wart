@@ -18,6 +18,7 @@ class ExhibitionsController < ApplicationController
         exhibition_art.save
       end
       event = Event.new
+      event.user_id = current_user.id
       event.title = exhibition.title
       event.detail = exhibition.detail
       event.event_type = 2
@@ -31,10 +32,6 @@ class ExhibitionsController < ApplicationController
 
   def show
     @exhibition = Exhibition.find(params[:id])
-    @exhibition.exhibition_arts.each do |exhibition_art|
-      @art = exhibition_art.art
-      return @art
-    end
     @comment = Comment.new
   end
 

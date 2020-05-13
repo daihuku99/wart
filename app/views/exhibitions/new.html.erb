@@ -17,10 +17,10 @@
       </div>
       <div class="col-xs-5">
         <%= f.label :start_date %>
-        <%= f.datetime_select :start_date, {default: Date.today + 19.hour}, class: 'form-control form-control-inline' %>
+        <%= f.datetime_select :start_date, {default: DateTime.now.in_time_zone('Tokyo')}, class: 'form-control form-control-inline' %>
 
         <%= f.label :end_date %>
-        <%= f.datetime_select :end_date, {default: Date.today + 19.hour}, class: 'form-control form-control-inline' %>
+        <%= f.datetime_select :end_date, {default: DateTime.now.in_time_zone('Tokyo')}, class: 'form-control form-control-inline' %>
 
         <%= f.submit '決定する', class: 'btn btn-default' %>
       </div>

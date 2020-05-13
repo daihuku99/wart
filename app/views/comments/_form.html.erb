@@ -1,0 +1,4 @@
+<%= form_with model: comment, url: art_comments_path(art), method: :post do |f| %>
+  <%= f.text_area :comment %>
+  <%= f.submit 'コメントする', class: 'btn btn-default' %>
+<% end %>

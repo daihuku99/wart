@@ -13,6 +13,38 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
-//= require jquery
 //= require bootstrap-sprockets
 //= require_tree .
+//= require jquery
+//= require moment
+//= require fullcalendar
+
+$(function () {
+    function eventCalendar() {
+        return $('#calendar').fullCalendar({});
+    };
+    function clearCalendar() {
+        $('#calendar').html('');
+    };
+    $(document).on('turbolinks:load', function () {
+    eventCalendar();
+    });
+    $(document).on('turbolinks:before-cache', clearCalendar);
+
+    $('#calendar').fullCalendar({
+    events: '/events.json'
+    });
+});
+
+$(function(){
+  $('.js-modal-btn').on('click', function(){
+    var btnIndex = $(this).index(); - (btnIndex - 1)
+    console.log(btnIndex)
+    $('.js-modal').eq(btnIndex / 4).fadeIn();
+    return false;
+  });
+  $('.js-modal-close').on('click', function(){
+    $('.js-modal').fadeOut();
+    return false;
+  });
+});

@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get 'exhibitions/:id/thanks' => 'exhibitions#thanks', as: :thanks
   resources :cart_arts, only: [:create, :destroy]
   delete 'cart_arts/empty' => 'cart_arts#empty', as: :empty
-  resources :exhibition_arts, only: [:show]
+  resources :exhibition_arts, only: [:show, :create, :destroy ]
+  resources :events
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

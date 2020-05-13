@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :cart_arts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_many :events, dependent: :destroy
 
   attachment :profile_image
 

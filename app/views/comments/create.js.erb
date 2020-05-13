@@ -1,0 +1,3 @@
+$('#comment').before('<div id="comments_<%= @comment.id %>"></div>');
+$('#comments_<%= @comment.id %>').html("<%= j(render 'comments/index', comment: @comment, art: @art) %>");
+$('textarea').val('');

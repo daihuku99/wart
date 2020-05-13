@@ -1,7 +1,8 @@
-<% if (@exhibition.start_date..@exhibition.end_date).cover?(Date.today) %>
+<% if (@exhibition.start_date..@exhibition.end_date).cover?(DateTime.now.in_time_zone('Tokyo')) || @exhibition.user == current_user %>
   <div class="container">
     <div class="row">
       <h3><%= @exhibition.title %>presented by <%= @exhibition.user.name %></h3>
+      <%= link_to '編集する', edit_exhibition_path(@exhibition), class: 'btn btn-default' %>
     </div>
     <div class="row">
       <div class="col-xs-5">
@@ -16,8 +17,17 @@
       </div>
       <div class="col-xs-7">
         <% @exhibition.exhibition_arts.each do |exhibition_art| %>
-          <%= attachment_image_tag exhibition_art.art, :image, :fill, 300, 300, format: 'jpeg' %>
-          <h4><%= exhibition_art.art.user.name %></h4>
+          <div class="js-modal-btn">
+            <%= attachment_image_tag exhibition_art.art, :image, :fill, 300, 300, format: 'jpeg' %>
+          </div>
+          <div class="modal js-modal">
+            <div class="modal-bg js-modal-close"></div>
+            <div class="modal-content">
+              <%= render 'arts/art', art: exhibition_art.art, comment: @comment %>
+              <p class="js-modal-close">Close</p>
+            </div>
+          </div>
+          <h4><%= exhibition_art.art.title %></h4><h6><%= exhibition_art.art.user.name %></h6>
         <% end %>
       </div>
     </div>

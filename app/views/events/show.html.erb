@@ -1,0 +1,9 @@
+<div class="container">
+  <div class="row">
+    <%= @event.user.name %>
+    <%= @event.title %>
+    <%= @event.detail %>
+    <%= @event.start_date.strftime('%Y/%m/%d %H:%M:%S') %>
+    <%= @event.end_date.strftime('%Y/%m/%d %H:%M:%S') %>
+  </div>
+</div>

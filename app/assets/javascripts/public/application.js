@@ -38,7 +38,7 @@ $(function () {
 
 $(function(){
   $('.js-modal-btn').on('click', function(){
-    var btnIndex = $(this).index(); - (btnIndex - 1)
+    var btnIndex = $(this).index();
     console.log(btnIndex)
     $('.js-modal').eq(btnIndex / 4).fadeIn();
     return false;

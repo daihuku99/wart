@@ -5,6 +5,12 @@
 <% end %>
 <div class="container">
   <div class="row">
+    <div class="sort">
+      <%= link_to '新着順', arts_path(sort: "desc"), class: 'btn btn-default' %>
+      <% @tags.each do |tag| %>
+        <%= link_to tag.name, arts_path(tag: tag.id), class: 'btn btn-default' %>
+      <% end %>
+    </div>
     <div class="arts-container">
       <% @arts.each do |art| %>
         <%= attachment_image_tag art, :image, :fill, 200, 200, format: 'jpeg' %><br>

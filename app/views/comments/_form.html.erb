@@ -1,4 +1,8 @@
-<%= form_with model: comment, url: art_comments_path(art), method: :post do |f| %>
-  <%= f.text_area :comment %>
-  <%= f.submit 'コメントする', class: 'btn btn-default' %>
+<% if user_signed_in? %>
+  <%= form_with model: comment, url: art_comments_path(art), method: :post do |f| %>
+    <%= f.text_area :comment %>
+    <%= f.submit 'コメントする', class: 'btn btn-default' %>
+  <% end %>
+<% else %>
+  <%= link_to 'コメントする', new_user_registration_path, class: 'btn btn-default' %>
 <% end %>

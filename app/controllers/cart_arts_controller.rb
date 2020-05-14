@@ -13,8 +13,13 @@ class CartArtsController < ApplicationController
   end
 
   def destroy
+    cart_art = CartArt.find(params[:id])
+    cart_art.destroy
+    redirect_to new_exhibition_path
   end
 
   def empty
+    current_user.cart_arts.destroy_all
+    redirect_to arts_path
   end
 end

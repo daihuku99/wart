@@ -3,7 +3,17 @@ class ArtsController < ApplicationController
   before_action :set_art, only: [:show, :edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update, :destroy]
   def index
-    @arts = Art.all
+    @tags = Tag.all
+    if params[:tag]
+      tag = Tag.find(params[:tag].to_i)
+      @arts = tag.arts
+    elsif params[:sort] == "desc"
+      @arts = Art.all.order(id: "DESC")
+    elsif params[:user_id]
+      @arts = Art.where(user_id: current_user.id)
+    else
+      @arts = Art.all
+    end
   end
 
   def new

@@ -10,4 +10,8 @@
       <%= art.likes.count %>いいね
     <% end %>
   <% end %>
+<% else %>
+  <%= link_to new_user_registration_path do %>
+    <span class="glyphicon glyphicon-heart" aria-hidden="true">いいね</span>
+  <% end %>
 <% end %>

@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   before_action :correct_user, only: [:edit, :update, :destroy]
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   def index
-    @events = Event.all
+    @events = Event.where(user_id: current_user.id)
   end
 
   def new

@@ -1,5 +1,7 @@
 class ExhibitionsController < ApplicationController
   require 'date'
+  before_action :authenticate_user!, :except => [:index, :show]
+  before_action :correct_user, only: [:edit, :update, :destroy]
   before_action :set_exhibition, only: [:show, :edit, :destroy, :update]
   def index
     @exhibitions = Exhibition.all
@@ -53,5 +55,12 @@ class ExhibitionsController < ApplicationController
 
   def set_exhibition
     @exhibition = Exhibition.find(params[:id])
+  end
+
+  def correct_user
+    @exhibition = Exhibition.find(params[:id])
+    if @exhibition.user_id != current_user.id
+      redirect_to exhibitions_path
+    end
   end
 end

@@ -2,7 +2,9 @@
   <div class="container">
     <div class="row">
       <h3><%= @exhibition.title %>presented by <%= @exhibition.user.name %></h3>
-      <%= link_to '編集する', edit_exhibition_path(@exhibition), class: 'btn btn-default' %>
+      <% if user_signed_in? && @exhibition.user == current_user %>
+        <%= link_to '編集する', edit_exhibition_path(@exhibition), class: 'btn btn-default' %>
+      <% end %>
     </div>
     <div class="row">
       <div class="col-xs-5">

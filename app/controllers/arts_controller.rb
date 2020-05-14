@@ -1,5 +1,7 @@
 class ArtsController < ApplicationController
+  before_action :authenticate_user!, :except => [:show, :index]
   before_action :set_art, only: [:show, :edit, :update, :destroy]
+  before_action :correct_user, only: [:edit, :update, :destroy]
   def index
     @arts = Art.all
   end
@@ -27,10 +29,9 @@ class ArtsController < ApplicationController
     @user = @art.user
     @comment = Comment.new
     @cart_art = CartArt.new
-    @events = Event.where(user_id: current_user.id)
-  end
-
-  def edit
+    if user_signed_in?
+      @events = Event.where(user_id: current_user.id)
+    end
   end
 
   def update
@@ -52,4 +53,10 @@ class ArtsController < ApplicationController
     @art = Art.find(params[:id])
   end
 
+  def correct_user
+    @art = Art.find(params[:id])
+    if @art.user_id != current_user.id
+      redirect_to art_path(@art)
+    end
+  end
 end

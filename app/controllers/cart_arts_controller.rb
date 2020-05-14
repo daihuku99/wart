@@ -1,4 +1,5 @@
 class CartArtsController < ApplicationController
+  before_action :authenticate_user!
   def create
     art = Art.find(params[:art_id].to_i)
     cart_art = current_user.cart_arts.new

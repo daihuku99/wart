@@ -28,6 +28,7 @@ class ArtsController < ApplicationController
       event.title = @art.title
       event.detail = @art.detail
       event.event_type = 1
+      event.art_id = @art.id
       event.start_date = @art.created_at
       event.end_date = @art.created_at
       event.save
@@ -50,7 +51,11 @@ class ArtsController < ApplicationController
   end
 
   def destroy
-    @art.destroy
+    event = Event.find_by(art_id: @art.id)
+    p event
+    if @art.destroy
+      event.destroy
+    end
     redirect_to arts_path
   end
 

@@ -24,6 +24,7 @@ class ExhibitionsController < ApplicationController
       event.title = exhibition.title
       event.detail = exhibition.detail
       event.event_type = 2
+      event.exhibition_id = exhibition.id
       event.start_date = exhibition.start_date
       event.end_date = exhibition.end_date
       event.save
@@ -43,8 +44,10 @@ class ExhibitionsController < ApplicationController
   end
 
   def destroy
-    exhibition = Exhibition.find(params[:id])
-    exhibition.destroy
+    event = Event.find_by(exhibition_id: @exhibition.id)
+    if @exhibition.destroy
+      event.destroy
+    end
     redirect_to exhibitions_path
   end
 

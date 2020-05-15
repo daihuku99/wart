@@ -1,4 +1,5 @@
 class CartArtsController < ApplicationController
+  before_action :authenticate_user!
   def create
     art = Art.find(params[:art_id].to_i)
     cart_art = current_user.cart_arts.new
@@ -12,8 +13,13 @@ class CartArtsController < ApplicationController
   end
 
   def destroy
+    cart_art = CartArt.find(params[:id])
+    cart_art.destroy
+    redirect_to new_exhibition_path
   end
 
   def empty
+    current_user.cart_arts.destroy_all
+    redirect_to arts_path
   end
 end

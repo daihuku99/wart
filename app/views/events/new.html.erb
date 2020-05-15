@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row">
+    <h4>New Event</h4>
+    <div class="form">
+      <%= form_with model: @event, url: events_path, method: :post, local: true do |f| %>
+        <%= f.label :title %>
+        <%= f.text_field :title %>
+
+        <%= f.label :detail %>
+        <%= f.text_area :detail %>
+
+        <%= f.label :start_date %>
+        <%= f.datetime_select :start_date, {default: DateTime.now.in_time_zone('Tokyo')} %>
+
+        <%= f.label :end_date %>
+        <%= f.datetime_select :end_date, {default: DateTime.now.in_time_zone('Tokyo')} %>
+
+        <%= f.submit '登録する', class: 'btn btn-default' %>
+      <% end %>
+    </div>
+  </div>
+</div>

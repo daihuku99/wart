@@ -12,6 +12,8 @@ module Wart
     config.load_defaults 5.2
     config.time_zone = "Tokyo"
     config.active_record.default_timezone = :local
+    Refile.store ||= Refile::Backend::FileSystem.new("/tmp/uploads/store".to_s)
+    Refile.cache ||= Refile::Backend::FileSystem.new("/tmp/uploads/cache".to_s)
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading

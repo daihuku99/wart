@@ -1,7 +1,19 @@
 class ArtsController < ApplicationController
+  before_action :authenticate_user!, :except => [:show, :index]
   before_action :set_art, only: [:show, :edit, :update, :destroy]
+  before_action :correct_user, only: [:edit, :update, :destroy]
   def index
-    @arts = Art.all
+    @tags = Tag.all
+    if params[:tag]
+      tag = Tag.find(params[:tag].to_i)
+      @arts = tag.arts
+    elsif params[:sort] == "desc"
+      @arts = Art.all.order(id: "DESC")
+    elsif params[:user_id]
+      @arts = Art.where(user_id: current_user.id)
+    else
+      @arts = Art.all
+    end
   end
 
   def new
@@ -16,6 +28,7 @@ class ArtsController < ApplicationController
       event.title = @art.title
       event.detail = @art.detail
       event.event_type = 1
+      event.art_id = @art.id
       event.start_date = @art.created_at
       event.end_date = @art.created_at
       event.save
@@ -27,10 +40,9 @@ class ArtsController < ApplicationController
     @user = @art.user
     @comment = Comment.new
     @cart_art = CartArt.new
-    @events = Event.where(user_id: current_user.id)
-  end
-
-  def edit
+    if user_signed_in?
+      @events = Event.where(user_id: current_user.id)
+    end
   end
 
   def update
@@ -39,7 +51,11 @@ class ArtsController < ApplicationController
   end
 
   def destroy
-    @art.destroy
+    event = Event.find_by(art_id: @art.id)
+    p event
+    if @art.destroy
+      event.destroy
+    end
     redirect_to arts_path
   end
 
@@ -52,4 +68,10 @@ class ArtsController < ApplicationController
     @art = Art.find(params[:id])
   end
 
+  def correct_user
+    @art = Art.find(params[:id])
+    if @art.user_id != current_user.id
+      redirect_to art_path(@art)
+    end
+  end
 end

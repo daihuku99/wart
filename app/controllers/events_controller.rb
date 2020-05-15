@@ -13,8 +13,13 @@ class EventsController < ApplicationController
 
   def create
     event = current_user.events.new(event_params)
-    event.save
-    redirect_to user_path(current_user)
+    p event.errors
+    if event.save
+      redirect_to user_path(current_user)
+    else
+      @event = Event.new
+      render :new
+    end
   end
 
   def update

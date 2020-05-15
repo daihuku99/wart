@@ -13,23 +13,13 @@ class ExhibitionsController < ApplicationController
   end
 
   def create
-    exhibition = current_user.exhibitions.new(exhibition_params)
-    if exhibition.save
-      current_user.cart_arts.each do |cart_art|
-        exhibition_art = exhibition.exhibition_arts.new(art_id: cart_art.art.id)
-        exhibition_art.save
-      end
-      event = Event.new
-      event.user_id = current_user.id
-      event.title = exhibition.title
-      event.detail = exhibition.detail
-      event.event_type = 2
-      event.exhibition_id = exhibition.id
-      event.start_date = exhibition.start_date
-      event.end_date = exhibition.end_date
-      event.save
-      current_user.cart_arts.destroy_all
-      redirect_to thanks_path(exhibition)
+    @exhibition = current_user.exhibitions.new(exhibition_params)
+    p @exhibition.errors
+    if @exhibition.new_exhibition(current_user, exhibition_params)
+      redirect_to thanks_path(@exhibition)
+    else
+      @cart_arts = CartArt.where(user_id: current_user.id)
+      render :new
     end
   end
 

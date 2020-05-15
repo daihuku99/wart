@@ -1,3 +1,8 @@
+<% if flash[:notice] %>
+  <div class="flash">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
 <div class="container">
   <div class="row">
     <% @cart_arts.each do |cart_art| %>
@@ -10,6 +15,7 @@
   </div>
   <div class="row">
     <%= form_with model: @exhibition, url: exhibitions_path, method: :post, local: true do |f| %>
+    <%= render 'layouts/error_messages', model: f.object %>
       <div class="col-xs-5">
         <%= f.label :title %>
         <%= f.text_field :title %><br>

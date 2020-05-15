@@ -22,7 +22,7 @@ class Exhibition < ApplicationRecord
       event = user.events.new(parameter)
       event.event_type = 2
       event.exhibition_id = self.id
-      event.save
+      event.save!
       user.cart_arts.destroy_all
     end
   end

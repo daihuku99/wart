@@ -15,12 +15,11 @@ class ExhibitionsController < ApplicationController
   def create
     @exhibition = current_user.exhibitions.new(exhibition_params)
     p @exhibition.errors
-    if @exhibition.new_exhibition(current_user, exhibition_params)
+    @exhibition.new_exhibition(current_user, exhibition_params)
       redirect_to thanks_path(@exhibition)
-    else
+    rescue => e
       @cart_arts = CartArt.where(user_id: current_user.id)
       render :new
-    end
   end
 
   def show

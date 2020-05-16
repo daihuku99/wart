@@ -4,11 +4,11 @@ class CartArtsController < ApplicationController
     art = Art.find(params[:art_id].to_i)
     cart_art = current_user.cart_arts.new
     cart_art.art_id = art.id
-    if cart_art.save
+    unless current_user.add_art?(cart_art.art_id)
+      cart_art.save
       redirect_to new_exhibition_path
     else
-      @arts = Art.all
-      redirect_to arts_path, notice: "追加に失敗しました"
+      redirect_to art_path(art), notice: "この作品はすでに選択されています"
     end
   end
 

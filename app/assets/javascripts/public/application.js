@@ -48,3 +48,12 @@ $(function(){
     return false;
   });
 });
+
+// $(function(){
+//   $('#start_date').on('change', function(){
+//    var s = $(this).val();
+//    console.log(s)
+//    var end_date = s + 3
+//    $('#end_date').val(end_date)
+//   });
+// });

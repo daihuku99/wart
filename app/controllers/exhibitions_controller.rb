@@ -3,6 +3,8 @@ class ExhibitionsController < ApplicationController
   before_action :authenticate_user!, :except => [:index, :show]
   before_action :correct_user, only: [:edit, :update, :destroy]
   before_action :set_exhibition, only: [:show, :edit, :destroy, :update]
+  before_action :period_checker, only: [:create, :new]
+
   def index
     @exhibitions = Exhibition.all
   end
@@ -14,7 +16,6 @@ class ExhibitionsController < ApplicationController
 
   def create
     @exhibition = current_user.exhibitions.new(exhibition_params)
-    p @exhibition.errors
     @exhibition.new_exhibition(current_user, exhibition_params)
       redirect_to thanks_path(@exhibition)
     rescue => e
@@ -53,6 +54,13 @@ class ExhibitionsController < ApplicationController
     @exhibition = Exhibition.find(params[:id])
     if @exhibition.user_id != current_user.id
       redirect_to exhibitions_path
+    end
+  end
+
+  def period_checker
+    exhibition = current_user.exhibitions.maximum(:end_date)
+    if exhibition > DateTime.now.in_time_zone('Tokyo')
+      redirect_to user_path(current_user), notice: '既存の展覧会が終了後、新規展覧会を作成できます。'
     end
   end
 end

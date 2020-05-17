@@ -1,8 +1,10 @@
 <div class="container">
   <div class="row">
     <% @users.each do |user| %>
-      <%= attachment_image_tag user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: 'no_image.jpeg' %>
-      <%= link_to user.name, user_path(user) %>
+     <div class="col-xs-4 user-container">
+        <%= attachment_image_tag user, :profile_image, :fill, 100, 100, size: "100x100", format: 'jpeg', fallback: 'no-image.jpeg', class: 'profile-image' %>
+        <%= link_to user.name, user_path(user) %>
+      </div>
     <% end %>
   </div>
 </div>

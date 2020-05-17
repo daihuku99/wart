@@ -1,20 +1,28 @@
 <div class="container">
   <div class="row">
     <%= form_with model: @exhibition, url: exhibition_path(@exhibition), method: :patch, local: true do |f| %>
+    <%= render 'layouts/error_messages', model: f.object %>
       <%= f.label :title %>
       <%= f.text_field :title %><br>
 
       <%= f.label :detail %>
-      <%= f.text_area :detail %>
+      <%= f.text_area :detail %><br>
+
+      <%= f.label :start_date %>
+      <%= f.datetime_select :start_date, {default: DateTime.now.in_time_zone('Tokyo')}, class: 'form-control form-control-inline' %>
+
+      <%= f.label :end_date %>
+      <%= f.datetime_select :end_date, {default: DateTime.now.in_time_zone('Tokyo')}, class: 'form-control form-control-inline' %>
 
       <%= f.submit '編集する', class: 'btn btn-default' %>
     <% end %>
   </div>
+  <div class="row">
     <div class="col-xs-7">
       <% @exhibition.exhibition_arts.each do |exhibition_art| %>
         <%= attachment_image_tag exhibition_art.art, :image, :fill, 200, 200, format: 'jpeg' %>
         <h4><%= exhibition_art.art.title %></h4>
-        <%= link_to '削除する', exhibition_art_path(exhibition_art), method: :delete, class: 'btn btn-default' %><br>
+        <%= link_to '作品を削除する', exhibition_art_path(exhibition_art), method: :delete, class: 'btn btn-default' %><br>
       <% end %>
       <%= form_with model: @exhibition, url: exhibition_arts_path, method: :post, local: true do |f| %>
         <%= f.collection_check_boxes(:exhibition_art_ids, current_user.arts, :id, :title) do |t| %>
@@ -29,6 +37,6 @@
         <%= f.submit '追加する', class: 'btn btn-default' %>
       <% end %>
     </div>
-    <%= link_to '削除する', exhibition_path(@exhibition), method: :delete,"data-confirm" => "本当に削除しますか？", class: 'btn btn-default' %>
+    <%= link_to '展覧会を削除する', exhibition_path(@exhibition), method: :delete,"data-confirm" => "本当に削除しますか？", class: 'btn btn-default' %>
   </div>
 </div>

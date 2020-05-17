@@ -1,12 +1,18 @@
 <div class="container">
   <div class="row">
+    <h4><%= @word %></h4>
+    <% @a = [] %>
     <% @exhibitions.each do |exhibition| %>
       <% if (exhibition.start_date..exhibition.end_date).cover?(DateTime.now.in_time_zone('Tokyo')) %>
+        <% @a.push(1) %>
         <h6><%= link_to exhibition.title, exhibition_path(exhibition) %><%= exhibition.detail %>presented by <%= exhibition.user.name %></h6>
         <% if user_signed_in? && exhibition.user == current_user %>
           <%= link_to '削除する', exhibition_path(exhibition), method: :delete,"data-confirm" => "本当に削除しますか？", class: 'btn btn-default' %>
         <% end %>
       <% end %>
+    <% end %>
+    <% if @a == [] %>
+      <p>開催中の展覧会はありません</p>
     <% end %>
   </div>
 </div>

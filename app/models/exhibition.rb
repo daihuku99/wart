@@ -13,11 +13,15 @@ class Exhibition < ApplicationRecord
   end
 
   def end_date_check
-   errors.add(:end_date, "は開始日以降のものを選択してください") if end_date < start_date
+    errors.add(:end_date, "は開始日以降のものを選択してください") if end_date < start_date
   end
 
   def date_count
-    errors.add(:end_date, "開催期間は5日間以内に設定してください") if end_date - start_date > 432000
+    errors.add(:end_date, "開催期間は5日間以内に設定してください") if end_date - start_date > self.second(5)
+  end
+
+  def second(date)
+    date * 24 * 60 * 60
   end
 
   def new_exhibition(user, parameter)

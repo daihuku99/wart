@@ -21,12 +21,42 @@
 
 /*ヘッダーの記述*/
 
-body {
-  padding-top: 70px;
+.navbar {
+  background-color: #FFB6C1;
+  height: 80px;
 }
 
 .nav {
   margin-right: 20px;
+  line-height: normal;
 }
 
-/* マイページのテンプレートの記述 */
+/*全体への記載*/
+
+body {
+  padding-top: 70px;
+  background-color: #FFE4E1;
+}
+
+.container {
+  background-color: #FFE4C4;
+  margin-top: 20px;
+}
+
+.profile-image {
+  border-radius: 50px;
+}
+
+.art-image {
+  border-radius: 25px;
+  border: 6px double #fff;
+  cursor : pointer;
+}
+
+.art-image:hover {
+  opacity: 0.6;
+}
+
+.form-control {
+  width: 100px;
+}

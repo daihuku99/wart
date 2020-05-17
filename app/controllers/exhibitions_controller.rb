@@ -29,8 +29,12 @@ class ExhibitionsController < ApplicationController
   end
 
   def update
-    @exhibition.update(exhibition_params)
-    redirect_to exhibition_path(@exhibition)
+    if @exhibition.update(exhibition_params)
+      p @exhibition.errors
+      redirect_to exhibition_path(@exhibition)
+    else
+      render :edit
+    end
   end
 
   def destroy

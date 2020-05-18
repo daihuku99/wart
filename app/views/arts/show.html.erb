@@ -12,7 +12,7 @@
       <div class="art-container">
         <div class="row">
           <div class="col-xs-5">
-            <%= attachment_image_tag @art, :image, :fill, 300, 300, format: 'jpeg' %><br>
+            <%= attachment_image_tag @art, :image, :fill, 300, 300, format: 'jpeg', class: 'art-image' %><br>
             <div class="comment-index">
               <% @art.comments.each do |comment| %>
                 <div id="comments_<%= comment.id %>">

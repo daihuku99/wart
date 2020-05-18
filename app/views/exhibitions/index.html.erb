@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <h4><%= @word %></h4>
+    <h4>開催中の展覧会</h4>
     <% @a = [] %>
     <% @exhibitions.each do |exhibition| %>
       <% if (exhibition.start_date..exhibition.end_date).cover?(DateTime.now.in_time_zone('Tokyo')) %>

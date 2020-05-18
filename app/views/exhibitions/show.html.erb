@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <h3><%= @exhibition.title %>presented by <%= @exhibition.user.name %></h3>
-      <% if user_signed_in? && @exhibition.user == current_user %>
+      <% if user_signed_in? && @exhibition.user == current_user && @exhibition.end_date > DateTime.now.in_time_zone('Tokyo') %>
         <%= link_to '編集する', edit_exhibition_path(@exhibition), class: 'btn btn-default' %>
       <% end %>
     </div>

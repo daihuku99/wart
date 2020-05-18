@@ -31,6 +31,11 @@
   line-height: normal;
 }
 
+.navbar-user-name {
+  margin: 0 auto;
+  display: table;
+}
+
 /*全体への記載*/
 
 body {
@@ -41,6 +46,13 @@ body {
 .container {
   background-color: #FFE4C4;
   margin-top: 20px;
+  width: 90%;
+  height: 90%;
+  border-radius: 25px;
+}
+
+.row {
+  height: 90%;
 }
 
 .profile-image {
@@ -59,4 +71,22 @@ body {
 
 .form-control {
   width: 100px;
+}
+
+.btn-square-pop-edit {
+  position: relative;
+  display: inline-block;
+  padding: 0.25em 0.5em;
+  text-decoration: none;
+  color: #32CD32;
+  background: #93FFAB;/*背景色*/
+  border-bottom: solid 2px #5BFF7F;/*少し濃い目の色に*/
+  border-radius: 4px;/*角の丸み*/
+  box-shadow: inset 0 2px 0 rgba(255,255,255,0.2), 0 2px 2px rgba(0, 0, 0, 0.19);
+  font-weight: bold;
+}
+
+.btn-square-pop-edit:active {
+  border-bottom: solid 2px #5BFF7F;
+  box-shadow: 0 0 2px #5BFF7F;
 }

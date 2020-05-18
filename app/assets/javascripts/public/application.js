@@ -49,11 +49,17 @@ $(function(){
   });
 });
 
-// $(function(){
-//   $('#start_date').on('change', function(){
-//    var s = $(this).val();
-//    console.log(s)
-//    var end_date = s + 3
-//    $('#end_date').val(end_date)
-//   });
-// });
+$(function(){
+    function readURL(input) {
+        if (input.files && input.files[0]){
+            var reader = new FileReader();
+            reader.onload = function (e){
+              $('.image_prev').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $('.image_field').change(function(){
+        readURL(this);
+    });
+});

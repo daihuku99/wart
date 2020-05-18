@@ -1,13 +1,18 @@
-
-    <div class="profile-container">
-        <%= attachment_image_tag user, :profile_image, :fill, 60, 60, format: 'jpeg', fallback: "no-image.jpeg", class: 'profile-image' %>
-        <h3><%= user.name %></h3><br>
-        <h6><%= user.user_status %></h6>
-        <p><%= user.introduction %></p><br>
-        <% if user == current_user %>
-          <%= link_to '投稿する', new_art_path, class: 'btn btn-default' %>
-          <%= link_to '編集する', edit_user_path(user), class: 'btn btn-default' %>
-          <div id="calendar"></div>
-          <%= link_to '予定を入力する', new_event_path, class: 'btn btn-default' %>
-        <% end %>
+<div class="profile-container">
+  <div class="profile-image-window">
+    <%= attachment_image_tag user, :profile_image, :fill, 90, 90, format: 'jpeg', fallback: "no-image.jpeg", class: 'profile-image' %>
+    <div class="user-info">
+      <h3><%= user.name %></h3><br>
+      <h6><%= user.user_status %></h6>
     </div>
+  </div>
+  <div class="introduction">
+    <p><%= user.introduction %></p><br>
+  </div>
+  <% if user == current_user %>
+    <%= link_to '投稿する', new_art_path, class: 'btn-square-pop' %>
+    <%= link_to '編集する', edit_user_path(user), class: 'btn-square-pop-edit' %>
+    <div id="calendar"></div>
+    <%= link_to '予定を入力する', new_event_path, class: 'btn btn-default' %>
+  <% end %>
+</div>

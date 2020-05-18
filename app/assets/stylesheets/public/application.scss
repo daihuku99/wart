@@ -63,10 +63,16 @@ body {
   border-radius: 25px;
   border: 6px double #fff;
   cursor : pointer;
+  filter: drop-shadow(3px 3px 3px rgba(0,0,0,0.6));
 }
 
 .art-image:hover {
   opacity: 0.6;
+  filter: none;
+}
+
+.art-title {
+  font-family:'メイリオ', 'Meiryo', sans-serif;
 }
 
 .form-control {
@@ -89,4 +95,8 @@ body {
 .btn-square-pop-edit:active {
   border-bottom: solid 2px #5BFF7F;
   box-shadow: 0 0 2px #5BFF7F;
+}
+
+.topic {
+  border-bottom: double 5px #FFF;
 }

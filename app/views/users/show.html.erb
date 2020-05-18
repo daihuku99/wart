@@ -9,18 +9,20 @@
       <%= render 'users/template', user: @user %>
     </div>
     <div class="col-xs-9">
-      <div class="col-xs-7 user-arts">
-        <h3><%= @user.name %>'s Arts</h3>
+      <div class="col-xs-7">
+        <h3 class="topic"><%= @user.name %>'s Arts</h3>
         <% @user.arts.each do |art| %>
-          <div class="col-xs-4">
-            <%= attachment_image_tag art, :image, :fill, 100, 100, format: 'jpeg', class: 'user-art-index' %><br>
-            <%= link_to art.title, art_path(art) %><br>
+          <div class="col-xs-4 user-art">
+            <%= link_to art_path(art) do %>
+              <%= attachment_image_tag art, :image, :fill, 100, 100, format: 'jpeg', class: 'art-image' %><br>
+            <% end %>
+            <h4 class="art-title"><%= link_to art.title, art_path(art) %></h4><br>
           </div>
         <% end %>
       </div>
       <% if user_signed_in? && @user == current_user %>
         <div class="col-xs-5">
-          <h3><%= @user.name %>'s Exhibitions</h3>
+          <h3 class="topic"><%= @user.name %>'s Exhibitions</h3>
           <% current_user.exhibitions.each do |exhibition| %>
               <%= link_to exhibition.title, exhibition_path(exhibition) %><br>
               <% if exhibition.end_date > DateTime.now.in_time_zone('Tokyo') %>

@@ -5,10 +5,52 @@
 
 /* top.html.erb */
 
-/* 全体のスタイル */
-
 .top-logo {
   width: 60%;
   height: 200px;
   margin: 0 200px;
+}
+
+.top-menu {
+  width: 80%;
+  height: 500px;
+  margin: 0 auto;
+}
+
+.top-menu-btns-1, .top-btns-2 {
+  margin: 0 auto;
+}
+
+.top-btn {
+  width: 400px;
+  height: 200px;
+  border: 1px solid #301b28;
+  background-color: #fff;
+  border-radius: 25px;
+  margin: 0 50px 20px 50px;
+  display: inline-block;
+  text-align: center;
+  line-height: 200px;
+  font-family: cursive;
+  font-size: 40px;
+  background-color: #ddc5a2;
+  color: #000000;
+}
+
+.top-btn:hover {
+  opacity: 0.8;
+}
+
+/* about.html.erb */
+
+.about-logo {
+  width: 50%;
+  height: 300px;
+}
+
+.about-title {
+  line-height: 280px;
+  font-family: cursive;
+  font-size: 60px;
+  display: inline-block;
 }

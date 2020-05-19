@@ -26,7 +26,7 @@
         </div>
         <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>
-            <li><%= link_to 'my page', user_path(current_user), class: "glyphicon glyphicon-home" %></li>
+            <li><%= link_to 'My page', user_path(current_user), class: "glyphicon glyphicon-home" %></li>
             <li><%= link_to 'Arts', arts_path, class: "glyphicon glyphicon-picture" %></li>
             <li><%= link_to 'Artists', users_path, class: "glyphicon glyphicon-user" %></li>
             <li><%= link_to 'Exhibitions', exhibitions_path, class: "glyphicon glyphicon-tower" %></li>

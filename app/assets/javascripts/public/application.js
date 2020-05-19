@@ -36,6 +36,7 @@ $(function () {
     });
 });
 
+
 $(function(){
   $('.js-modal-btn').on('click', function(){
     var btnIndex = $(this).index();
@@ -63,3 +64,4 @@ $(function(){
         readURL(this);
     });
 });
+

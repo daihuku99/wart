@@ -9,7 +9,7 @@
     <div class="row">
       <div class="col-xs-5">
         <div class="row">
-          <%= attachment_image_tag @exhibition.user, :profile_image, :fill, 200, 200, format: 'jpeg' %><br>
+          <%= attachment_image_tag @exhibition.user, :profile_image, :fill, 200, 200, size: '200*200', format: 'jpeg' %><br>
           <%= @exhibition.user.name %>
           <%= @exhibition.user.introduction %>
         </div>

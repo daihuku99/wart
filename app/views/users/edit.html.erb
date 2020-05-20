@@ -1,23 +1,39 @@
 <div class="container">
   <div class="row">
-    <%= form_with model: current_user, url: user_path(current_user), method: :patch, local: true do |f| %>
-      <%= attachment_image_tag current_user, :profile_image, :fill, 100, 100, size: "100x100", fallback: 'no-image.jpg',  onClick: "$('.image_field').click()", class: 'image_prev' %>
-      <%= f.file_field :profile_image, class: 'image_field' %>
+    <div class="edit-user-form">
+      <h4 class="title">Edit info</h4>
+      <%= form_with model: current_user, url: user_path(current_user), method: :patch, local: true do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
 
+      <div class="row">
+        <div class="edit-user-image">
+          <%= attachment_image_tag current_user, :profile_image, :fill, 100, 100, size: "100x100", fallback: 'no-image.jpg',  onClick: "$('.image_field').click()", class: 'image_prev' %><br>
+          <%= f.file_field :profile_image, class: 'image_field edit-image' %>
+        </div>
+      </div>
 
-      <%= f.label :name %>
-      <%= f.text_field :name %>
+      <div class="row">
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+      </div>
 
-      <%= f.label :introduction %>
-      <%= f.text_field :introduction %>
+      <div class="row">
+        <%= f.label :introduction %>
+        <%= f.text_field :introduction %>
+      </div>
 
-      <%= f.radio_button :user_status, :閲覧のみ %>
-      <%= f.label :閲覧のみ %>
+      <div class="row">
+        <%= f.radio_button :user_status, :閲覧のみ %>
+        <%= f.label :閲覧のみ %>
 
-      <%= f.radio_button :user_status, :投稿機能あり %>
-      <%= f.label :投稿機能あり %>
+        <%= f.radio_button :user_status, :投稿機能あり %>
+        <%= f.label :投稿機能あり %>
+      </div>
 
-      <%= f.submit '更新する', class: 'btn btn-default' %>
-    <% end %>
+      <div class="row">
+        <%= f.submit '更新する', class: 'btn btn-default' %>
+      </div>
+      <% end %>
+    </div>
   </div>
 </div>

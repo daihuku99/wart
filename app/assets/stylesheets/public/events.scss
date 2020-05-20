@@ -1,3 +1,30 @@
 // Place all the styles related to the events controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* new.html.erb */
+.event-form {
+  width: 60%;
+  height: 100%;
+  margin: 20px auto;
+  background-color: #ddc5a2;
+  border-radius: 25px;
+  text-align: center;
+  font-family: cursive;
+}
+
+/* show.html.erb */
+
+.event-container {
+  width: 60%;
+  height: 100%;
+  margin: 20px auto;
+  background-color: #ddc5a2;
+  border-radius: 25px;
+  text-align: center;
+  font-family: cursive;
+}
+
+.event-table {
+  margin: 0 auto;
+}

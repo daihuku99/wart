@@ -1,42 +1,58 @@
 <div class="container">
   <div class="row">
-    <%= form_with model: @exhibition, url: exhibition_path(@exhibition), method: :patch, local: true do |f| %>
-    <%= render 'layouts/error_messages', model: f.object %>
-      <%= f.label :title %>
-      <%= f.text_field :title %><br>
+    <h4 class="title">Edit Exhibition</h4>
+    <div class="edit-exhibition-form">
+      <%= form_with model: @exhibition, url: exhibition_path(@exhibition), method: :patch, local: true do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
 
-      <%= f.label :detail %>
-      <%= f.text_area :detail %><br>
+        <div class="col-xs-3 col-xs-offset-1">
+          <%= f.label :title %>
+          <%= f.text_field :title %><br>
 
-      <%= f.label :start_date %>
-      <%= f.datetime_select :start_date, {default: DateTime.now.in_time_zone('Tokyo')}, class: 'form-control form-control-inline' %>
+          <%= f.label :detail %><br>
+          <%= f.text_area :detail %><br>
+        </div>
 
-      <%= f.label :end_date %>
-      <%= f.datetime_select :end_date, {default: DateTime.now.in_time_zone('Tokyo')}, class: 'form-control form-control-inline' %>
+        <div class="col-xs-8">
+          <%= f.label :start_date %>
+          <%= f.datetime_select :start_date, {default: DateTime.now.in_time_zone('Tokyo')} %><br>
 
-      <%= f.submit '編集する', class: 'btn btn-default' %>
-    <% end %>
-  </div>
-  <div class="row">
-    <div class="col-xs-7">
-      <% @exhibition.exhibition_arts.each do |exhibition_art| %>
-        <%= attachment_image_tag exhibition_art.art, :image, :fill, 200, 200, format: 'jpeg' %>
-        <h4><%= exhibition_art.art.title %></h4>
-        <%= link_to '作品を削除する', exhibition_art_path(exhibition_art), method: :delete, class: 'btn btn-default' %><br>
-      <% end %>
-      <%= form_with model: @exhibition, url: exhibition_arts_path, method: :post, local: true do |f| %>
-        <%= f.collection_check_boxes(:exhibition_art_ids, current_user.arts, :id, :title) do |t| %>
-          <% unless @exhibition.exhibition_arts.where(art_id: t.object.id ).exists? %>
-            <% t.label do %>
-              <%= t.check_box :checked => false %>
-              <%= attachment_image_tag t.object, :image, :fill, 200, 200, format: 'jpeg' %>
-            <% end %>
-          <% end %>
-        <% end %>
-        <%= hidden_field_tag :id, @exhibition.id %>
-        <%= f.submit '追加する', class: 'btn btn-default' %>
+          <%= f.label :end_date %>
+          <%= f.datetime_select :end_date, {default: DateTime.now.in_time_zone('Tokyo')} %><br><br><br>
+
+          <%= f.submit 'Edit Exhibition', class: 'btn btn-default' %>
+          <%= link_to 'Delete Exhibition', exhibition_path(@exhibition), method: :delete,"data-confirm" => "本当に削除しますか？", class: 'btn btn-default' %>
+        </div>
       <% end %>
     </div>
-    <%= link_to '展覧会を削除する', exhibition_path(@exhibition), method: :delete,"data-confirm" => "本当に削除しますか？", class: 'btn btn-default' %>
+  </div>
+  <div class="row">
+    <div class="edit-exhibition-art-form">
+      <div class="exhibition-art">
+        <p>現在選択中のイラスト</p>
+        <% @exhibition.exhibition_arts.each do |exhibition_art| %>
+          <div class="col-xs-3">
+            <%= attachment_image_tag exhibition_art.art, :image, :fill, 100, 100, format: 'jpeg' %>
+            <h4><%= exhibition_art.art.title %></h4>
+            <%= link_to '作品を削除する', exhibition_art_path(exhibition_art), method: :delete, class: 'btn btn-default' %><br>
+          </div>
+        <% end %>
+      </div>
+      <div class="exhibition-art-add">
+        <p>イラストの追加は以下から</p>
+        <%= form_with model: @exhibition, url: exhibition_arts_path, method: :post, local: true do |f| %>
+          <%= f.collection_check_boxes(:exhibition_art_ids, current_user.arts, :id, :title) do |t| %>
+            <% unless @exhibition.exhibition_arts.where(art_id: t.object.id ).exists? %>
+              <% t.label do %>
+                <%= t.check_box :checked => false %>
+                <%= attachment_image_tag t.object, :image, :fill, 100, 100, format: 'jpeg' %><br>
+              <% end %>
+            <% end %>
+          <% end %>
+          <%= hidden_field_tag :id, @exhibition.id %><br>
+          <%= f.submit '追加する', class: 'btn btn-default' %>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>

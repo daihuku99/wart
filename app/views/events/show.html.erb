@@ -1,15 +1,40 @@
 <div class="container">
   <div class="row">
-    <%= @event.user.name %>
-    <%= @event.title %>
-    <%= @event.detail %>
-    <%= @event.event_type %>
-    <%= @event.start_date.strftime('%Y/%m/%d %H:%M:%S') %>
-    <%= @event.end_date.strftime('%Y/%m/%d %H:%M:%S') %>
-
-    <% if @event.event_type == "プライベート" %>
-      <%= link_to '変更する', edit_event_path(@event), class: 'btn btn-default' %>
-      <%= link_to '削除する', event_path(@event), method: :delete, class: 'btn btn-default', "data-confirm" => "本当に削除しますか？" %>
-    <% end %>
+    <div class="event-container">
+      <h4 class="title">Event Detail</h4>
+      <table class="event-table">
+        <tr>
+          <th colspan="2"></th>
+        </tr>
+        <tbody>
+          <tr>
+            <td>Title</td>
+            <td><%= @event.title %></td>
+          </tr>
+          <tr>
+            <td>Detail</td>
+            <td><%= @event.detail %></td>
+          </tr>
+          <tr>
+            <td>Type</td>
+            <td><%= @event.event_type %></td>
+          </tr>
+          <tr>
+            <td>StartDate</td>
+            <td><%= @event.start_date.strftime('%Y/%m/%d %H:%M:%S') %></td>
+          </tr>
+          <tr>
+            <td>EndDate</td>
+            <td><%= @event.end_date.strftime('%Y/%m/%d %H:%M:%S') %></td>
+          </tr>
+          <% if @event.event_type == "プライベート" %>
+            <tr>
+              <td><%= link_to '変更する', edit_event_path(@event), class: 'btn btn-default' %></td>
+              <td><%= link_to '削除する', event_path(@event), method: :delete, class: 'btn btn-default', "data-confirm" => "本当に削除しますか？" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

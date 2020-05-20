@@ -28,7 +28,7 @@
   height: 80px;
   border-radius: 25px;
   border: 2px solid #CC6600;
-  background-color: #ffdbc9;
+  background-color: #ddc5a2;
   margin: 0 auto 10px auto;
   text-align: center;
 }
@@ -65,20 +65,47 @@
   text-align: center;
 }
 
+
 #calendar {
   background-color: #fff;
   margin-top: 20px;
 }
 
 /* index.html.erb */
-.user-container {
-  margin: 10px;
-  height: 120px;
-  border: 4px solid #fff;
-  border-radius: 25px;
+.user-index {
+  margin: 10px auto;
+  height: 110px;
+  border-bottom: 2px solid #CC6600;
+  width: 50%;
 }
+
+.user-index-name {
+  line-height: 110px;
+  color: black;
+}
+
 
 /* show.html.erb */
 .user-art {
   text-align: center;
+}
+
+.topic {
+  font-family: cursive;
+}
+
+/* edit.html.erb */
+
+.edit-user-form {
+  width: 60%;
+  height: 500px;
+  margin: 20px auto;
+  background-color: #ddc5a2;
+  border-radius: 25px;
+  text-align: center;
+  font-family: cursive;
+}
+
+.edit-image {
+  margin-left: 280px;
 }

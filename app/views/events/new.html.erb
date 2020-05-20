@@ -1,22 +1,32 @@
 <div class="container">
   <div class="row">
-    <h4>New Event</h4>
-    <div class="form">
+    <div class="event-form">
+      <h4>New Event</h4>
       <%= form_with model: @event, url: events_path, method: :post, local: true do |f| %>
       <%= render 'layouts/error_messages', model: f.object %>
+      <div class="row">
         <%= f.label :title %>
         <%= f.text_field :title %>
+      </div>
 
+      <div class="row">
         <%= f.label :detail %>
         <%= f.text_area :detail %>
+      </div>
 
+      <div class="row">
         <%= f.label :start_date %>
         <%= f.datetime_select :start_date, {default: DateTime.now.in_time_zone('Tokyo')} %>
+      </div>
 
+      <div class="row">
         <%= f.label :end_date %>
         <%= f.datetime_select :end_date, {default: DateTime.now.in_time_zone('Tokyo')} %>
+      </div>
 
-        <%= f.submit '登録する', class: 'btn btn-default' %>
+      <div class="row">
+        <%= f.submit 'Create Event', class: 'btn btn-default' %>
+      </div>
       <% end %>
     </div>
   </div>

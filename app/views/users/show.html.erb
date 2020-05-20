@@ -23,6 +23,7 @@
       <% if user_signed_in? && @user == current_user %>
         <div class="col-xs-5">
           <h3 class="topic"><%= @user.name %>'s Exhibitions</h3>
+          <%= link_to 'New Exhibition', new_exhibition_path, class: 'btn btn-default' %>
           <% current_user.exhibitions.each do |exhibition| %>
               <%= link_to exhibition.title, exhibition_path(exhibition) %><br>
               <% if exhibition.end_date > DateTime.now.in_time_zone('Tokyo') %>

@@ -10,16 +10,13 @@ class UsersController < ApplicationController
     @event = Event.new
   end
 
-  def edit
-  end
-
   def update
     current_user.update(user_params)
     redirect_to user_path(current_user)
   end
 
   def index
-    @users = User.all
+    @users = User.page(params[:page]).reverse_order
   end
 
   private

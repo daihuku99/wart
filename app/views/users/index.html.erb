@@ -1,10 +1,14 @@
 <div class="container">
   <div class="row">
-    <% @users.each do |user| %>
-     <div class="col-xs-4 user-container">
-        <%= attachment_image_tag user, :profile_image, :fill, 100, 100, size: "100x100", format: 'jpeg', fallback: 'no-image.jpeg', class: 'profile-image' %>
-        <%= link_to user.name, user_path(user) %>
-      </div>
-    <% end %>
+    <h4 class="title">Artists index</h4>
+    <div class="user-container">
+      <% @users.each do |user| %>
+        <div class="user-index">
+          <%= attachment_image_tag user, :profile_image, :fill, 90, 90, size: "90x90", format: 'jpeg', fallback: 'no-image.jpeg', class: 'profile-image' %>
+          <h3 class="user-index-name"><%= link_to user.name, user_path(user) %></h3>
+        </div>
+      <% end %>
+      <%= paginate @users %>
+    </div>
   </div>
 </div>

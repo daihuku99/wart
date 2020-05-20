@@ -1,3 +1,105 @@
 // Place all the styles related to the homes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+/* top.html.erb */
+
+.top-logo {
+  width: 60%;
+  height: 200px;
+  margin: 0 200px;
+}
+
+.top-menu {
+  width: 80%;
+  height: 500px;
+  margin: 0 auto;
+}
+
+.top-menu-btns-1, .top-btns-2 {
+  margin: 0 auto;
+}
+
+.top-btn {
+  width: 400px;
+  height: 200px;
+  border: 1px solid #301b28;
+  background-color: #fff;
+  border-radius: 25px;
+  margin: 0 50px 20px 50px;
+  display: inline-block;
+  text-align: center;
+  line-height: 200px;
+  font-family: cursive;
+  font-size: 40px;
+  background-color: #ddc5a2;
+  color: #000000;
+}
+
+.top-btn:hover {
+  opacity: 0.8;
+}
+
+/* about.html.erb */
+
+.about-logo {
+  width: 50%;
+  height: 300px;
+}
+
+.about-title {
+  line-height: 280px;
+  font-family: cursive;
+  font-size: 60px;
+  display: inline-block;
+}
+
+.navgation, .about-exhibition {
+  width: 80%;
+  height: 200px;
+  background-color: #ddc5a2;
+  border-radius: 25px;
+  margin: 0 auto;
+  text-align: center;
+  line-height: 200px;
+  display: table;
+}
+
+.concept {
+  width: 80%;
+  height: 200px;
+  background-color: #ddc5a2;
+  border-radius: 25px;
+  margin: 20px auto;
+  text-align: center;
+  line-height: 200px;
+  display: table;
+}
+
+.nav-title, .concept-title, .about-exhibition-title {
+  line-height: 200px;
+}
+
+.nav-text, .concept-text, .about-exhibition-text {
+  display:inline-block;
+  vertical-align: middle;
+  line-height:normal;
+  padding-top: 10px;
+}
+
+.nav-title, .about-exhibition-title {
+  background-image: image-url("swiper-1.jpg");
+  background-size: 11%;
+  border-radius: 25px;
+  background-color:rgba(255,255,255,0.8);
+  background-blend-mode:lighten;
+}
+
+.concept-title {
+  background-image: image-url("swiper-2.jpg");
+  background-size: 11%;
+  border-radius: 25px;
+  background-color:rgba(255,255,255,0.8);
+  background-blend-mode:lighten;
+}

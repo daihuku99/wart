@@ -21,12 +21,91 @@
 
 /*ヘッダーの記述*/
 
-body {
-  padding-top: 70px;
+.navbar {
+  background-color: #ddc5a2;
+  height: 80px;
 }
 
 .nav {
   margin-right: 20px;
+  line-height: normal;
 }
 
-/* マイページのテンプレートの記述 */
+.navbar-brand {
+  width: 200px;
+  height: 100px;
+  padding: 0 0 0 20px;
+}
+
+.logo {
+  padding: 0;
+}
+
+.navbar-user-name {
+  margin: 0 auto;
+  display: table;
+}
+
+/*全体への記載*/
+
+body {
+  padding-top: 70px;
+  background-color: #301b28;
+}
+
+.container {
+  background-color: #b38540;
+  width: 90%;
+  height: 100%;
+  margin-bottom: 20px;
+}
+
+.row {
+  height: 90%;
+}
+
+.profile-image {
+  border-radius: 50px;
+}
+
+.art-image {
+  border-radius: 25px;
+  border: 6px double #fff;
+  cursor : pointer;
+  filter: drop-shadow(3px 3px 3px rgba(0,0,0,0.6));
+}
+
+.art-image:hover {
+  opacity: 0.6;
+  filter: none;
+}
+
+.art-title {
+  font-family:'メイリオ', 'Meiryo', sans-serif;
+}
+
+.form-control {
+  width: 100px;
+}
+
+.btn-square-pop-edit {
+  position: relative;
+  display: inline-block;
+  padding: 0.25em 0.5em;
+  text-decoration: none;
+  color: #32CD32;
+  background: #93FFAB;/*背景色*/
+  border-bottom: solid 2px #5BFF7F;/*少し濃い目の色に*/
+  border-radius: 4px;/*角の丸み*/
+  box-shadow: inset 0 2px 0 rgba(255,255,255,0.2), 0 2px 2px rgba(0, 0, 0, 0.19);
+  font-weight: bold;
+}
+
+.btn-square-pop-edit:active {
+  border-bottom: solid 2px #5BFF7F;
+  box-shadow: 0 0 2px #5BFF7F;
+}
+
+.topic {
+  border-bottom: double 5px #FFF;
+}

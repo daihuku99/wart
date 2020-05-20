@@ -1,3 +1,84 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* _template.html.erb */
+
+.profile-container {
+  background-color: #ebdcb2;
+  width: 290px;
+  height: 100%;
+  text-align: center;
+  border-left: 6px double #b38540;
+  border-right: 6px double #b38540;
+}
+
+.profile-image-window {
+  height: 130px;
+  width: 100%;
+}
+
+.user-info {
+  float: left;
+  margin-left: 10px;
+}
+
+.introduction {
+  width: 80%;
+  height: 80px;
+  border-radius: 25px;
+  border: 2px solid #CC6600;
+  background-color: #ffdbc9;
+  margin: 0 auto 10px auto;
+  text-align: center;
+}
+
+.introduction p {
+  overflow-wrap: break-word;
+}
+
+.profile-image {
+  float: left;
+  margin: 15px;
+  border: 2px solid #CC6600;
+}
+
+.btn-square-pop {
+  position: relative;
+  display: inline-block;
+  padding: 0.25em 0.5em;
+  text-decoration: none;
+  color: #FFB6C1;
+  background: #FDF5E6;/*背景色*/
+  border: solid 0.5px #FFB6C1;/*少し濃い目の色に*/
+  border-radius: 4px;/*角の丸み*/
+  box-shadow: 0 2px 2px #FFB6C1;
+  font-weight: bold;
+}
+
+.btn-square-pop:active {
+  border-bottom: solid 2px #FFB6C1;
+  box-shadow: 0 0 2px #FFB6C1;
+}
+
+.btn-square-pop, .btn-square-pop-edit {
+  text-align: center;
+}
+
+#calendar {
+  background-color: #fff;
+  margin-top: 20px;
+}
+
+/* index.html.erb */
+.user-container {
+  margin: 10px;
+  height: 120px;
+  border: 4px solid #fff;
+  border-radius: 25px;
+}
+
+/* show.html.erb */
+.user-art {
+  text-align: center;
+}

@@ -13,10 +13,18 @@
     </div>
     <div class="arts-container">
       <% @arts.each do |art| %>
-        <%= attachment_image_tag art, :image, :fill, 200, 200, format: 'jpeg' %><br>
-        <h5><%= link_to art.title, art_path(art) %></h5>
-        <h6><%= art.likes.count %>いいね</h6>
+        <div class="col-xs-3">
+          <%= link_to art_path(art) do %>
+            <%= attachment_image_tag art, :image, :fill, 200, 200, format: 'jpeg', class: 'art-image' %><br>
+          <% end %>
+          <h5><%= link_to art.title, art_path(art) %></h5>
+          <h6><%= art.likes.count %>いいね</h6>
+          <% if user_signed_in? && current_user.add_art?(art.id) %>
+            <p>この作品はすでに選択されています</p>
+          <% end %>
+        </div>
       <% end %>
+      <%= paginate @arts %>
     </div>
   </div>
 </div>

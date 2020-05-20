@@ -3,6 +3,8 @@ class ExhibitionsController < ApplicationController
   before_action :authenticate_user!, :except => [:index, :show]
   before_action :correct_user, only: [:edit, :update, :destroy]
   before_action :set_exhibition, only: [:show, :edit, :destroy, :update]
+  before_action :period_checker, only: [:create, :new]
+
   def index
     @exhibitions = Exhibition.all
   end
@@ -13,24 +15,12 @@ class ExhibitionsController < ApplicationController
   end
 
   def create
-    exhibition = current_user.exhibitions.new(exhibition_params)
-    if exhibition.save
-      current_user.cart_arts.each do |cart_art|
-        exhibition_art = exhibition.exhibition_arts.new(art_id: cart_art.art.id)
-        exhibition_art.save
-      end
-      event = Event.new
-      event.user_id = current_user.id
-      event.title = exhibition.title
-      event.detail = exhibition.detail
-      event.event_type = 2
-      event.exhibition_id = exhibition.id
-      event.start_date = exhibition.start_date
-      event.end_date = exhibition.end_date
-      event.save
-      current_user.cart_arts.destroy_all
-      redirect_to thanks_path(exhibition)
-    end
+    @exhibition = current_user.exhibitions.new(exhibition_params)
+    @exhibition.new_exhibition(current_user, exhibition_params)
+      redirect_to thanks_path(@exhibition)
+    rescue => e
+      @cart_arts = CartArt.where(user_id: current_user.id)
+      render :new
   end
 
   def show
@@ -39,8 +29,12 @@ class ExhibitionsController < ApplicationController
   end
 
   def update
-    @exhibition.update(exhibition_params)
-    redirect_to exhibition_path(@exhibition)
+    if @exhibition.update(exhibition_params)
+      p @exhibition.errors
+      redirect_to exhibition_path(@exhibition)
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -64,6 +58,13 @@ class ExhibitionsController < ApplicationController
     @exhibition = Exhibition.find(params[:id])
     if @exhibition.user_id != current_user.id
       redirect_to exhibitions_path
+    end
+  end
+
+  def period_checker
+    exhibition = current_user.exhibitions.maximum(:end_date)
+    if exhibition > DateTime.now.in_time_zone('Tokyo')
+      redirect_to user_path(current_user), notice: '既存の展覧会が終了後、新規展覧会を作成できます。'
     end
   end
 end

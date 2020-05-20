@@ -2,14 +2,14 @@
   <div class="container">
     <div class="row">
       <h3><%= @exhibition.title %>presented by <%= @exhibition.user.name %></h3>
-      <% if user_signed_in? && @exhibition.user == current_user %>
+      <% if user_signed_in? && @exhibition.user == current_user && @exhibition.end_date > DateTime.now.in_time_zone('Tokyo') %>
         <%= link_to '編集する', edit_exhibition_path(@exhibition), class: 'btn btn-default' %>
       <% end %>
     </div>
     <div class="row">
       <div class="col-xs-5">
         <div class="row">
-          <%= attachment_image_tag @exhibition.user, :profile_image, :fill, 200, 200, format: 'jpeg' %><br>
+          <%= attachment_image_tag @exhibition.user, :profile_image, :fill, 200, 200, size: '200*200', format: 'jpeg' %><br>
           <%= @exhibition.user.name %>
           <%= @exhibition.user.introduction %>
         </div>

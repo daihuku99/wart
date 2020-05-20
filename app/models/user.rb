@@ -13,6 +13,10 @@ class User < ApplicationRecord
 
   attachment :profile_image
 
+  def add_art?(art_id)
+    self.cart_arts.where(art_id: art_id).exists?
+  end
+
   enum user_status: {
     閲覧のみ: 0,
     投稿機能あり: 1

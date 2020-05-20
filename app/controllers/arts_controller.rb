@@ -6,13 +6,13 @@ class ArtsController < ApplicationController
     @tags = Tag.all
     if params[:tag]
       tag = Tag.find(params[:tag].to_i)
-      @arts = tag.arts
+      @arts = tag.arts.page(params[:page]).reverse_order
     elsif params[:sort] == "desc"
-      @arts = Art.all.order(id: "DESC")
+      @arts = Art.all.order(id: "DESC").page(params[:page]).reverse_order
     elsif params[:user_id]
-      @arts = Art.where(user_id: current_user.id)
+      @arts = Art.where(user_id: current_user.id).page(params[:page]).reverse_order
     else
-      @arts = Art.all
+      @arts = Art.page(params[:page]).reverse_order
     end
   end
 

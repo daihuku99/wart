@@ -1,22 +1,36 @@
 <div class="container">
   <div class="row">
-    <h4>Edit Event</h4>
-    <div class="form">
-      <%= form_with model: @event, url: event_path(@event), method: :patch, local: true do |f| %>
-        <%= f.label :title %>
-        <%= f.text_field :title %>
+    <div class="event-form">
+      <h4>Edit Event</h4>
+      <div class="form">
+        <%= form_with model: @event, url: event_path(@event), method: :patch, local: true do |f| %>
+        <%= render 'layouts/error_messages', model: f.object %>
 
-        <%= f.label :detail %>
-        <%= f.text_area :detail %>
+          <div class="row">
+            <%= f.label :title %>
+            <%= f.text_field :title %>
+          </div>
 
-        <%= f.label :start_date %>
-        <%= f.datetime_select :start_date, {default: @event.start_date} %>
+          <div class="row">
+            <%= f.label :detail %>
+            <%= f.text_area :detail %>
+          </div>
 
-        <%= f.label :end_date %>
-        <%= f.datetime_select :end_date, {default: @event.end_date} %>
+          <div class="row">
+            <%= f.label :start_date %>
+            <%= f.datetime_select :start_date, {default: @event.start_date} %>
+          </div>
 
-        <%= f.submit '更新する', class: 'btn btn-default' %>
-      <% end %>
+          <div class="row">
+            <%= f.label :end_date %>
+            <%= f.datetime_select :end_date, {default: @event.end_date} %>
+          </div>
+
+          <div class="row">
+            <%= f.submit 'Update', class: 'btn btn-default' %>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

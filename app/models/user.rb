@@ -13,6 +13,9 @@ class User < ApplicationRecord
 
   attachment :profile_image
 
+  validates :name, presence: true, length: {maximum: 10}
+  validates :introduction, presence: true, length: {maximum: 30}
+
   def add_art?(art_id)
     self.cart_arts.where(art_id: art_id).exists?
   end

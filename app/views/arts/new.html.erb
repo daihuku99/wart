@@ -4,6 +4,7 @@
     <div class="col-xs-5">
       <div class="form">
         <%= form_with model: @art, url: arts_path, method: :post, local: true do |f| %>
+        <%= render 'layouts/error_messages', model: f.object %>
 
           <%= attachment_image_tag @art, :image, :fill, 100, 100, size: "100x100", fallback: 'no-image.jpg',  onClick: "$('.image_field').click()", class: 'image_prev' %>
           <%= f.file_field :image, class: 'image_field' %>

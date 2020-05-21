@@ -32,8 +32,10 @@ class ArtsController < ApplicationController
       event.start_date = @art.created_at
       event.end_date = @art.created_at
       event.save
+      redirect_to art_path(@art)
+    else
+      render :new
     end
-    redirect_to art_path(@art)
   end
 
   def show
@@ -46,8 +48,11 @@ class ArtsController < ApplicationController
   end
 
   def update
-    @art.update(art_params)
-    redirect_to art_path(@art)
+    if @art.update(art_params)
+      redirect_to art_path(@art)
+    else
+      render :edit
+    end
   end
 
   def destroy

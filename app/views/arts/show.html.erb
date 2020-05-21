@@ -22,7 +22,7 @@
               <div id="comment"></div>
             </div>
           </div>
-          <div class="col-xs-4">
+          <div class="col-xs-7">
             <h3><%= @art.title %></h3>
             <% if @user == current_user %>
               <%= form_with model: @cart_art, url: cart_arts_path, method: :post, local: true do |f| %>

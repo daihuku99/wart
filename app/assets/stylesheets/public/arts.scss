@@ -2,21 +2,40 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+/* index.html.erb */
+
+.sort {
+  margin: 20px;
+}
+
+
+/* show.html.erb */
 .comment-index {
   width: 300px;
   height: 150px;
   overflow: auto;
 }
 
-.sort {
-  margin: 20px;
+.art-image-show {
+  border-radius: 25px;
+  border: 6px double #fff;
 }
+
+/* new.html.erb */
 
 .image_field {
   display: none;
 }
 
-.art-image-show {
+
+/* edit.html.erb */
+
+.art-container{
+  width: 80%;
+  height: 100vh;
+  margin: 20px auto;
+  background-color: #ddc5a2;
   border-radius: 25px;
-  border: 6px double #fff;
+  text-align: center;
+  font-family: cursive;
 }

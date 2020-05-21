@@ -9,6 +9,10 @@ class Art < ApplicationRecord
 
   attachment :image
 
+  validates :title, presence: true, length: {maximum: 10}
+  validates :detail, presence: true, length: {maximum: 20}
+  validates :image, presence: true
+
   def liked_by?(user)
     likes.where(user_id: user.id).exists?
   end

@@ -1,36 +1,45 @@
 <% if (@exhibition.start_date..@exhibition.end_date).cover?(DateTime.now.in_time_zone('Tokyo')) || @exhibition.user == current_user %>
   <div class="container">
-    <div class="row">
-      <h3><%= @exhibition.title %>presented by <%= @exhibition.user.name %></h3>
-      <% if user_signed_in? && @exhibition.user == current_user && @exhibition.end_date > DateTime.now.in_time_zone('Tokyo') %>
-        <%= link_to '編集する', edit_exhibition_path(@exhibition), class: 'btn btn-default' %>
-      <% end %>
-    </div>
-    <div class="row">
-      <div class="col-xs-5">
-        <div class="row">
-          <%= attachment_image_tag @exhibition.user, :profile_image, :fill, 200, 200, size: '200*200', format: 'jpeg' %><br>
-          <%= @exhibition.user.name %>
-          <%= @exhibition.user.introduction %>
-        </div>
-        <div class="row">
+    <div class="exhibition-show-container">
+      <div class=" exhibition-title">
+          <h3><%= @exhibition.title %>presented by <%= @exhibition.user.name %></h3>
           <p><%= @exhibition.detail %></p>
-        </div>
+          <% if user_signed_in? && @exhibition.user == current_user && @exhibition.end_date > DateTime.now.in_time_zone('Tokyo') %>
+            <%= link_to 'Edit Exhibition', edit_exhibition_path(@exhibition), class: 'btn btn-default' %>
+          <% end %>
       </div>
-      <div class="col-xs-7">
-        <% @exhibition.exhibition_arts.each do |exhibition_art| %>
-          <div class="js-modal-btn">
-            <%= attachment_image_tag exhibition_art.art, :image, :fill, 300, 300, format: 'jpeg' %>
-          </div>
-          <div class="modal js-modal">
-            <div class="modal-bg js-modal-close"></div>
-            <div class="modal-content">
-              <%= render 'arts/art', art: exhibition_art.art, comment: @comment %>
-              <p class="js-modal-close">Close</p>
+      <div class="row">
+        <div class="exhibition-show">
+          <div class="col-xs-3">
+            <div class="row">
+              <div class="exhibition-user-container">
+                <p>Presenter</p>
+                <%= attachment_image_tag @exhibition.user, :profile_image, :fill, 90, 90, size: '100*100', format: 'jpeg', class: 'profile-image' %><br>
+                <%= @exhibition.user.name %><br>
+                <%= @exhibition.user.introduction %>
+              </div>
             </div>
           </div>
-          <h4><%= exhibition_art.art.title %></h4><h6><%= exhibition_art.art.user.name %></h6>
-        <% end %>
+          <div class="col-xs-9">
+            <% @exhibition.exhibition_arts.each do |exhibition_art| %>
+              <div class="col-xs-6">
+                <div class="modal-contents">
+                  <div class="js-modal-btn">
+                    <%= attachment_image_tag exhibition_art.art, :image, :fill, 200, 200, format: 'jpeg', class: 'art-image' %>
+                  </div>
+                  <div class="modal js-modal">
+                    <div class="modal-bg js-modal-close"></div>
+                    <div class="modal-content">
+                      <%= render 'arts/art', art: exhibition_art.art, comment: @comment %>
+                      <p class="js-modal-close">Close</p>
+                    </div>
+                  </div>
+                  <h4><%= exhibition_art.art.title %></h4></h6>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
       </div>
     </div>
   </div>

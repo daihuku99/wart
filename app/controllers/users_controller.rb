@@ -1,7 +1,11 @@
 class UsersController < ApplicationController
   require 'date'
   before_action :authenticate_user!, :except => [:index, :show]
-  before_action :correct_user, only: [:edit, :update]
+  before_action :correct_user, only: [:edit, :update, :confirm, :withdrawal]
+  def index
+    @users = User.page(params[:page]).reverse_order
+  end
+
   def show
     @user = User.find(params[:id])
     if user_signed_in?
@@ -18,8 +22,10 @@ class UsersController < ApplicationController
     end
   end
 
-  def index
-    @users = User.page(params[:page]).reverse_order
+  def withdrawal
+    current_user.update(is_deleted:true)
+    reset_session
+    redirect_to root_path
   end
 
   private

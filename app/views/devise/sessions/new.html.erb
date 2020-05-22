@@ -1,4 +1,9 @@
 <div class="container">
+  <% if flash[:error] %>
+    <div class="flash">
+      <%= flash[:error] %>
+    </div>
+  <% end %>
   <div class="form">
     <div class="row">
       <div class="col-xs-3 col-xs-offset-3">
@@ -53,12 +58,6 @@
       <div class="col-xs-3 col-xs-offset-2">
         <h4>登録がお済みでない方</h4>
           <%= link_to 'こちら', new_user_registration_path %> から新規登録を行ってください。
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-xs-3 col-xs-offset-6">
-        <%= link_to "=> パスワードを忘れた方はこちら", new_user_password_path %>
       </div>
     </div>
   </div>

@@ -20,6 +20,10 @@ class User < ApplicationRecord
     self.cart_arts.where(art_id: art_id).exists?
   end
 
+  def active_for_authentication?
+    super && (self.is_deleted == "有効")
+  end
+
   enum user_status: {
     閲覧のみ: 0,
     投稿機能あり: 1

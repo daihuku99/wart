@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
 
   resources :users, :except => [:destroy, :new]
+  get 'users/:id/confirm' => 'users#confirm', as: :confirm
+  patch 'users/:id/withdrawal' => 'users#withdrawal', as: :withdrawal
   resources :arts do
     resources :comments, only: [:create, :destroy]
     resource :likes, only: [:create, :destroy]

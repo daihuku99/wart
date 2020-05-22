@@ -28,7 +28,7 @@
 /*ヘッダーの記述*/
 
 .navbar {
-  background-color: #ddc5a2;
+  background-color: #ffe866;
   height: 80px;
 }
 
@@ -60,9 +60,6 @@
 }
 
 .form {
-  background-color: #ddc5a2;
-  width: 80%;
-  border-radius: 25px;
   margin-top: 20px;
 }
 
@@ -70,11 +67,12 @@
 
 body {
   padding-top: 70px;
-  background-color: #301b28;
+  background-color: #fff;
+  height: 100vh;
 }
 
 .container {
-  background-color: #D2B48C;
+  background-color: #fff7cc;
   width: 90%;
   min-height: 100vh;
   position: relative;
@@ -110,24 +108,6 @@ body {
   width: 150px;
 }
 
-.btn-square-pop-edit {
-  position: relative;
-  display: inline-block;
-  padding: 0.25em 0.5em;
-  text-decoration: none;
-  color: #32CD32;
-  background: #93FFAB;
-  border-bottom: solid 2px #5BFF7F;
-  border-radius: 4px;
-  box-shadow: inset 0 2px 0 rgba(255,255,255,0.2), 0 2px 2px rgba(0, 0, 0, 0.19);
-  font-weight: bold;
-}
-
-.btn-square-pop-edit:active {
-  border-bottom: solid 2px #5BFF7F;
-  box-shadow: 0 0 2px #5BFF7F;
-}
-
 .topic {
   border-bottom: double 5px #FFF;
 }
@@ -136,4 +116,8 @@ body {
   font-family: cursive;
   text-align: center;
   font-size: 35px;
+}
+
+.flash {
+  margin-top: 10px;
 }

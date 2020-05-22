@@ -80,3 +80,5 @@ group :production do
 end
 
 gem 'kaminari'
+
+gem 'rails-i18n'

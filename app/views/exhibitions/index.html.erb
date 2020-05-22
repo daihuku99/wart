@@ -2,7 +2,6 @@
   <div class="row">
     <div class="exhibition-container">
       <h4 class="title">Exhibitions</h4>
-      <% @exhibition_counter = [] %>
       <table class="exhibition-index">
         <thead>
           <tr>
@@ -16,9 +15,8 @@
         <tbody>
           <% @exhibitions.each do |exhibition| %>
             <% if (exhibition.start_date..exhibition.end_date).cover?(DateTime.now.in_time_zone('Tokyo')) %>
-              <% @exhibition_counter.push(1) %>
               <tr>
-                <td><h6><%= link_to exhibition.title, exhibition_path(exhibition) %></h6></td>
+                <td><h6 class="count"><%= link_to exhibition.title, exhibition_path(exhibition) %></h6></td>
                 <td><%= exhibition.detail %></td>
                 <td><%= exhibition.user.name %></td>
                 <td>
@@ -31,9 +29,7 @@
           <% end %>
         </tbody>
       </table>
-      <% if @exhibition_counter == [] %>
-        <p>開催中の展覧会はありません</p>
-      <% end %>
+      <h3 class="message"></h3>
     </div>
   </div>
 </div>

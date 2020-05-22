@@ -13,9 +13,9 @@
 
             <%= f.label :detail %><br>
             <%= f.text_area :detail %><br>
-          <%= f.submit 'Update', class: 'btn btn-default' %>
+          <%= f.submit '更新する', class: 'btn btn-default' %>
         <% end %>
-        <%= link_to 'Delete', art_path(@art), method: :delete, "data-confirm" => "本当に削除しますか？", class: 'btn btn-default'  %>
+        <%= link_to '削除する', art_path(@art), method: :delete, "data-confirm" => "本当に削除しますか？", class: 'btn btn-default'  %>
       </div>
     </div>
   </div>

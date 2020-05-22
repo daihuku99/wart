@@ -27,6 +27,20 @@
   display: none;
 }
 
+.new-art-image {
+  margin: 0 auto;
+}
+
+.art-form {
+  background-color: #fff;
+  border: 2px solid #000000;
+  width: 80%;
+  height: 100%;
+  text-align: center;
+  padding: 10px;
+  border-radius: 25px;
+  margin: 20px auto;
+}
 
 /* edit.html.erb */
 
@@ -34,7 +48,8 @@
   width: 80%;
   height: 100vh;
   margin: 20px auto;
-  background-color: #ddc5a2;
+  background-color: #fff;
+  border: 2px solid #000000;
   border-radius: 25px;
   text-align: center;
   font-family: cursive;

@@ -7,8 +7,8 @@ class ArtsController < ApplicationController
     if params[:tag]
       tag = Tag.find(params[:tag].to_i)
       @arts = tag.arts.page(params[:page]).reverse_order
-    elsif params[:sort] == "desc"
-      @arts = Art.all.order(id: "DESC").page(params[:page]).reverse_order
+    elsif params[:sort] == "asc" #新着順
+      @arts = Art.all.order(id: "ASC").page(params[:page]).reverse_order
     elsif params[:user_id]
       @arts = Art.where(user_id: current_user.id).page(params[:page]).reverse_order
     else
@@ -22,12 +22,12 @@ class ArtsController < ApplicationController
 
   def create
     @art = current_user.arts.new(art_params)
-    if @art.save
+    if @art.save #同時にカレンダーに表示させる
       event = Event.new
       event.user_id = current_user.id
       event.title = @art.title
       event.detail = @art.detail
-      event.event_type = 1
+      event.event_type = 1 #イラスト投稿日
       event.art_id = @art.id
       event.start_date = @art.created_at
       event.end_date = @art.created_at
@@ -57,8 +57,7 @@ class ArtsController < ApplicationController
 
   def destroy
     event = Event.find_by(art_id: @art.id)
-    p event
-    if @art.destroy
+    if @art.destroy #同時にイベントを削除
       event.destroy
     end
     redirect_to arts_path
@@ -73,7 +72,7 @@ class ArtsController < ApplicationController
     @art = Art.find(params[:id])
   end
 
-  def correct_user
+  def correct_user #URL直打ち防止
     @art = Art.find(params[:id])
     if @art.user_id != current_user.id
       redirect_to art_path(@art)

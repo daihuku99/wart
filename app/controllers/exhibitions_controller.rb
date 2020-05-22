@@ -16,9 +16,9 @@ class ExhibitionsController < ApplicationController
 
   def create
     @exhibition = current_user.exhibitions.new(exhibition_params)
-    @exhibition.new_exhibition(current_user, exhibition_params)
+    @exhibition.new_exhibition(current_user, exhibition_params) #exhibition.rb参照
       redirect_to thanks_path(@exhibition)
-    rescue => e
+    rescue => e #transactionが失敗した時の処理
       @cart_arts = CartArt.where(user_id: current_user.id)
       render :new
   end
@@ -30,7 +30,6 @@ class ExhibitionsController < ApplicationController
 
   def update
     if @exhibition.update(exhibition_params)
-      p @exhibition.errors
       redirect_to exhibition_path(@exhibition)
     else
       render :edit
@@ -39,7 +38,7 @@ class ExhibitionsController < ApplicationController
 
   def destroy
     event = Event.find_by(exhibition_id: @exhibition.id)
-    if @exhibition.destroy
+    if @exhibition.destroy #同時にイベントを削除
       event.destroy
     end
     redirect_to exhibitions_path
@@ -54,14 +53,14 @@ class ExhibitionsController < ApplicationController
     @exhibition = Exhibition.find(params[:id])
   end
 
-  def correct_user
+  def correct_user #URL直打ち防止
     @exhibition = Exhibition.find(params[:id])
     if @exhibition.user_id != current_user.id
       redirect_to exhibitions_path
     end
   end
 
-  def period_checker
+  def period_checker #展覧会の重複開催防止。直近のend_dateより現在が過去の場合、展覧会の新規作成はできない。
     exhibition = current_user.exhibitions.maximum(:end_date)
     if exhibition > DateTime.now.in_time_zone('Tokyo')
       redirect_to user_path(current_user), notice: '既存の展覧会が終了後、新規展覧会を作成できます。'

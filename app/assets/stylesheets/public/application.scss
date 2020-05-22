@@ -67,8 +67,10 @@
 
 body {
   padding-top: 70px;
-  background-color: #fff;
   height: 100vh;
+  background-image: image-url("swiper-1.jpg");
+  background-size: 3%;
+  background-color: rgba(255,255,255,0.8);
 }
 
 .container {

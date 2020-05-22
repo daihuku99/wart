@@ -22,18 +22,18 @@ class UsersController < ApplicationController
     end
   end
 
-  def withdrawal
+  def withdrawal #退会機能
     current_user.update(is_deleted:true)
-    reset_session
+    reset_session #ログアウト
     redirect_to root_path
   end
 
   private
   def user_params
-    params.require(:user).permit(:name, :introduction, :profile_image, :user_status)
+    params.require(:user).permit(:name, :introduction, :profile_image)
   end
 
-  def correct_user
+  def correct_user #URL直打ち防止
     @user = User.find(params[:id])
     if @user.id != current_user.id
       redirect_to users_path

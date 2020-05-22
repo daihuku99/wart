@@ -14,14 +14,14 @@ class User < ApplicationRecord
   attachment :profile_image
 
   validates :name, presence: true, length: {maximum: 10}
-  validates :introduction, presence: true, length: {maximum: 30}
+  validates :introduction, length: {maximum: 30}
 
-  def add_art?(art_id)
+  def add_art?(art_id) #current_userが選択済みのartかどうか判別
     self.cart_arts.where(art_id: art_id).exists?
   end
 
-  def active_for_authentication?
-    super && (self.is_deleted == "有効")
+  def active_for_authentication? #退会済みユーザーの判定に使用
+    self.is_deleted == "有効"
   end
 
   enum user_status: {

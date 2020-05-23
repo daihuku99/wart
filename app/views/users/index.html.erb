@@ -4,7 +4,7 @@
     <div class="user-container">
       <% @users.each do |user| %>
         <div class="user-index">
-          <%= attachment_image_tag user, :profile_image, :fill, 90, 90, size: "90x90", format: 'jpeg', fallback: 'no-image.jpeg', class: 'profile-image' %>
+          <%= attachment_image_tag user, :profile_image, size: "100x100", format: 'jpeg', fallback: 'no-image.jpeg', class: 'profile-image' %>
           <h3 class="user-index-name"><%= link_to user.name, user_path(user) %></h3>
         </div>
       <% end %>

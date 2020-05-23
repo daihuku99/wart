@@ -11,6 +11,20 @@
   margin: 0 200px;
 }
 
+.top-text {
+  width: 70%;
+  height: 100%;
+  padding: 30px;
+  margin: 20px auto;
+  text-align: center;
+  background-image: image-url("swiper-1.jpg");
+  background-size: contain;
+  background-color: rgba(255,255,255,0.8);
+  background-blend-mode: lighten;
+  border-radius: 25px;
+  border: 2px solid #FFD700;
+}
+
 .top-menu {
   width: 80%;
   height: 100%;
@@ -64,7 +78,7 @@
 .navgation, .about-exhibition {
   width: 80%;
   height: 20%;
-  background-color: #ddc5a2;
+  background-color: #fff;
   border-radius: 25px;
   margin: 0 auto;
   text-align: center;
@@ -75,7 +89,7 @@
 .concept {
   width: 80%;
   height: 20%;
-  background-color: #ddc5a2;
+  background-color: #fff;
   border-radius: 25px;
   margin: 20px auto;
   text-align: center;

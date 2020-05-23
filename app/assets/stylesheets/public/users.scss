@@ -50,6 +50,15 @@
   margin-top: 20px;
 }
 
+.fc-sun, .fc-sat {
+ background-color: #FFB6C1;
+}
+
+.fc-time {
+  display: none;
+}
+
+
 /* index.html.erb */
 .user-index {
   margin: 10px auto;

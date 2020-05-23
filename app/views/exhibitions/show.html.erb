@@ -4,11 +4,11 @@
       <div class=" exhibition-title">
           <h3><%= @exhibition.title %>presented by <%= @exhibition.user.name %></h3>
           <%= link_to user_path(@exhibition.user) do %>
-            <%= attachment_image_tag @exhibition.user, :profile_image, :fill, 90, 90, size: '90*90', format: 'jpeg', class: ' exhibition-user-image'  %>
+            <%= attachment_image_tag @exhibition.user, :profile_image, :fill, 90, 90, format: 'jpeg', class: ' exhibition-user-image'  %>
           <% end %>
           <p><%= @exhibition.detail %></p>
           <% if user_signed_in? && @exhibition.user == current_user && @exhibition.end_date > DateTime.now.in_time_zone('Tokyo') %>
-            <%= link_to 'Edit Exhibition', edit_exhibition_path(@exhibition), class: 'btn btn-default' %>
+            <%= link_to '編集する', edit_exhibition_path(@exhibition), class: 'btn btn-default' %>
           <% end %>
       </div>
       <div class="row">

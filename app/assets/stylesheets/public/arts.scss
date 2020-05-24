@@ -5,7 +5,14 @@
 /* index.html.erb */
 
 .sort {
-  margin: 20px;
+  width: 80%;
+  height: 100%;
+  margin: 20px auto;
+  padding: 8px;
+  text-align: center;
+  border: 1px solid #FFA500;
+  background-color: #FFEFD5;
+  border-radius: 25px;
 }
 
 .arts-container {

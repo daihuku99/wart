@@ -11,7 +11,7 @@
     <div class="col-xs-9">
       <div class="col-xs-7">
         <h3 class="topic"><%= @user.name %>'s Arts</h3>
-        <% @user.arts.each do |art| %>
+        <% @arts.each do |art| %>
           <div class="col-xs-4 user-art">
             <%= link_to art_path(art) do %>
               <%= attachment_image_tag art, :image, :fill, 100, 100, format: 'jpeg', class: 'art-image' %><br>
@@ -19,17 +19,23 @@
             <h4 class="art-title"><%= link_to art.title, art_path(art) %></h4><br>
           </div>
         <% end %>
+        <%= paginate @arts %>
       </div>
       <% if user_signed_in? && @user == current_user %>
         <div class="col-xs-5">
           <h3 class="topic"><%= @user.name %>'s Exhibitions</h3>
-          <%= link_to '新規展覧会作成', new_exhibition_path, class: 'btn btn-default' %><br>
-          <% current_user.exhibitions.each do |exhibition| %>
-              <%= link_to exhibition.title, exhibition_path(exhibition) %><br>
-              <% if exhibition.end_date > DateTime.now.in_time_zone('Tokyo') %>
-                <%= link_to '展覧会の編集', edit_exhibition_path(exhibition), class: 'btn btn-default' %><br>
-              <% end %>
-          <% end %>
+          <div class="user-exhibition-title">
+            <%= link_to '新規展覧会作成', new_exhibition_path, class: 'btn btn-default' %><br>
+            <% @exhibitions.each do |exhibition| %>
+                <%= link_to exhibition.title, exhibition_path(exhibition), class: 'exhibition-link' %><br>
+                <% if exhibition.end_date > DateTime.now.in_time_zone('Tokyo') %>
+                  <%= link_to edit_exhibition_path(exhibition) do %>
+                    <span class="glyphicon glyphicon-wrench exhibition-link-btn" aria-hidden="true"></span><br>
+                  <% end %>
+                <% end %>
+            <% end %>
+            <%= paginate @exhibitions %>
+          </div>
         </div>
       <% end %>
     </div>

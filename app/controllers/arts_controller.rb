@@ -57,7 +57,7 @@ class ArtsController < ApplicationController
 
   def destroy
     event = Event.find_by(art_id: @art.id)
-    if @art.destroy #同時にイベントを削除
+    if @art.destroy #同時にイベントをカレンダーから削除
       event.destroy
     end
     redirect_to arts_path

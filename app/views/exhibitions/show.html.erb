@@ -20,14 +20,7 @@
                   <div class="js-modal-btn">
                     <%= attachment_image_tag exhibition_art.art, :image, :fill, 200, 200, format: 'jpeg', class: 'art-image' %>
                   </div>
-                  <div class="modal js-modal">
-                    <div class="modal-bg js-modal-close"></div>
-                    <div class="modal-content">
-                      <%= render 'arts/art', art: exhibition_art.art, comment: @comment %>
-                      <p class="js-modal-close">Close</p>
-                    </div>
-                  </div>
-                  <h4><%= exhibition_art.art.title %></h4></h6>
+                  <h4><%= exhibition_art.art.title %></h4>
                 </div>
               </div>
             <% end %>
@@ -36,6 +29,15 @@
       </div>
     </div>
   </div>
+  <% @exhibition.exhibition_arts.each do |exhibition_art| %>
+    <div class="modal js-modal">
+      <div class="modal-bg js-modal-close"></div>
+      <div class="modal-content">
+        <%= render 'arts/art', art: exhibition_art.art, comment: @comment %>
+        <p class="js-modal-close">Close</p>
+      </div>
+    </div>
+  <% end %>
 <% else %>
   <h6>展覧会は終了しました</h6>
 <% end %>

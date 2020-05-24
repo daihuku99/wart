@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
     @comment = current_user.comments.new(comment_params)
     @comment.art_id = @art.id
     unless @comment.save #空コメントの場合はart詳細画面にリダイレクト
-      redirect_to art_path(@art)
+      redirect_to art_path(@art), notice: 'コメントが空欄です。'
     end
     # redirect_to art_path(art)
   end

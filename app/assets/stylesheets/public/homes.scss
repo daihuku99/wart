@@ -25,6 +25,10 @@
   border: 2px solid #FFD700;
 }
 
+.top-text p {
+  font-weight: bold;
+}
+
 .top-menu {
   width: 80%;
   height: 100%;
@@ -99,6 +103,12 @@
 
 .nav-title, .concept-title, .about-exhibition-title {
   line-height: 200px;
+}
+
+.nav-title p, .concept-title p, .about-exhibition-title p{
+  font-weight: bold;
+  font-size: 20px;
+  font-family: monospace;
 }
 
 .nav-text, .concept-text, .about-exhibition-text {

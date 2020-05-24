@@ -16,6 +16,9 @@ class ExhibitionsController < ApplicationController
 
   def create
     @exhibition = current_user.exhibitions.new(exhibition_params)
+    if current_user.cart_arts.empty?
+      render :new, notice: 'イラストが選択されていません。'
+    end
     @exhibition.new_exhibition(current_user, exhibition_params) #exhibition.rb参照
       redirect_to thanks_path(@exhibition)
     rescue => e #transactionが失敗した時の処理

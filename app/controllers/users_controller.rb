@@ -8,6 +8,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @arts = @user.arts.page(params[:page]).reverse_order
+    @exhibitions = @user.exhibitions.page(params[:page]).reverse_order
     if user_signed_in?
       @events = Event.where(user_id: current_user.id)
     end

@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   require 'date'
   before_action :authenticate_user!
-  before_action :correct_user, only: [:edit, :update, :destroy]
+  before_action :correct_user, only: [:show, :edit, :update, :destroy]
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   def index
     @events = Event.where(user_id: current_user.id)

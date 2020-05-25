@@ -19,7 +19,7 @@
                   <%= render partial: 'comments/index', locals: {comment: comment, art: @art} %>
                 </div>
               <% end %>
-              <div id="comment"></div>
+              <div id="art_comment_block_<%= @art.id %>"></div>
             </div>
           </div>
           <div class="col-xs-7">

@@ -29,9 +29,7 @@
             <% @exhibitions.each do |exhibition| %>
                 <%= link_to exhibition.title, exhibition_path(exhibition), class: 'exhibition-link' %><br>
                 <% if exhibition.end_date > DateTime.now.in_time_zone('Tokyo') %>
-                  <%= link_to edit_exhibition_path(exhibition) do %>
-                    <span class="glyphicon glyphicon-wrench exhibition-link-btn" aria-hidden="true"></span><br>
-                  <% end %>
+                  <%= link_to '↑この展覧会を編集する', edit_exhibition_path(exhibition), class: 'btn btn-default' %><br>
                 <% end %>
             <% end %>
             <%= paginate @exhibitions %>

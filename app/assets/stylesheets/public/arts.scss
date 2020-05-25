@@ -2,21 +2,66 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+/* index.html.erb */
+
+.sort {
+  width: 80%;
+  height: 100%;
+  margin: 20px auto;
+  padding: 8px;
+  text-align: center;
+  border: 1px solid #FFA500;
+  background-color: #FFEFD5;
+  border-radius: 25px;
+}
+
+.arts-container {
+  text-align: center;
+}
+
+
+/* show.html.erb */
 .comment-index {
   width: 300px;
   height: 150px;
   overflow: auto;
 }
 
-.sort {
-  margin: 20px;
+.art-image-show {
+  border-radius: 25px;
+  border: 6px double #fff;
 }
+
+/* new.html.erb */
 
 .image_field {
   display: none;
 }
 
-.art-image-show {
+.new-art-image {
+  margin: 0 auto;
+}
+
+.art-form {
+  background-color: #fff;
+  border: 2px solid #000000;
+  width: 80%;
+  height: 100%;
+  text-align: center;
+  padding: 10px;
   border-radius: 25px;
-  border: 6px double #fff;
+  margin: 20px auto;
+}
+
+/* edit.html.erb */
+
+.art-container{
+  width: 80%;
+  height: 100vh;
+  margin: 20px auto;
+  background-color: #fff;
+  border: 2px solid #000000;
+  border-radius: 25px;
+  text-align: center;
+  font-family: cursive;
 }

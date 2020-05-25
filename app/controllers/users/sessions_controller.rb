@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Users::SessionsController < Devise::SessionsController
+  before_action :reject_user, only: [:create]
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
@@ -18,7 +19,19 @@ class Users::SessionsController < Devise::SessionsController
   #   super
   # end
 
-  # protected
+  protected
+
+  def reject_user #退会済みユーザーをはじく。
+    user = User.find_by(email: params[:user][:email].downcase) #emailからユーザーを特定
+    if user
+      if (user.valid_password?(params[:user][:password]) && (user.active_for_authentication? == false)) #user.rb参照
+        flash[:error] = '退会済みユーザーです。'
+        redirect_to new_user_session_path
+      end
+    else
+      flash[:error] = "必須項目を入力してください。"
+    end
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_in_params

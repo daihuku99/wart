@@ -11,29 +11,47 @@
   margin: 0 200px;
 }
 
-.top-menu {
-  width: 80%;
-  height: 500px;
-  margin: 0 auto;
+.top-text {
+  width: 70%;
+  height: 100%;
+  padding: 30px;
+  margin: 20px auto;
+  text-align: center;
+  background-image: image-url("swiper-1.jpg");
+  background-size: contain;
+  background-color: rgba(255,255,255,0.8);
+  background-blend-mode: lighten;
+  border-radius: 25px;
+  border: 2px solid #FFD700;
 }
 
-.top-menu-btns-1, .top-btns-2 {
+.top-text p {
+  font-weight: bold;
+}
+
+.top-menu {
+  width: 80%;
+  height: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.top-btns-1, .top-btns-2 {
   margin: 0 auto;
 }
 
 .top-btn {
-  width: 400px;
-  height: 200px;
-  border: 1px solid #301b28;
+  width: 300px;
+  height: 100px;
+  border: 2px solid #000000;
   background-color: #fff;
   border-radius: 25px;
   margin: 0 50px 20px 50px;
   display: inline-block;
   text-align: center;
-  line-height: 200px;
+  line-height: 100px;
   font-family: cursive;
-  font-size: 40px;
-  background-color: #ddc5a2;
+  font-size: 30px;
   color: #000000;
 }
 
@@ -42,6 +60,12 @@
 }
 
 /* about.html.erb */
+
+.about-header {
+  width: 80%;
+  height: 25%;
+  margin: 0 auto;
+}
 
 .about-logo {
   width: 50%;
@@ -57,8 +81,8 @@
 
 .navgation, .about-exhibition {
   width: 80%;
-  height: 200px;
-  background-color: #ddc5a2;
+  height: 20%;
+  background-color: #fff;
   border-radius: 25px;
   margin: 0 auto;
   text-align: center;
@@ -68,8 +92,8 @@
 
 .concept {
   width: 80%;
-  height: 200px;
-  background-color: #ddc5a2;
+  height: 20%;
+  background-color: #fff;
   border-radius: 25px;
   margin: 20px auto;
   text-align: center;
@@ -81,10 +105,16 @@
   line-height: 200px;
 }
 
+.nav-title p, .concept-title p, .about-exhibition-title p{
+  font-weight: bold;
+  font-size: 20px;
+  font-family: monospace;
+}
+
 .nav-text, .concept-text, .about-exhibition-text {
   display:inline-block;
   vertical-align: middle;
-  line-height:normal;
+  line-height: normal;
   padding-top: 10px;
 }
 
@@ -92,14 +122,14 @@
   background-image: image-url("swiper-1.jpg");
   background-size: 11%;
   border-radius: 25px;
-  background-color:rgba(255,255,255,0.8);
-  background-blend-mode:lighten;
+  background-color: rgba(255,255,255,0.8);
+  background-blend-mode: lighten;
 }
 
 .concept-title {
   background-image: image-url("swiper-2.jpg");
   background-size: 11%;
   border-radius: 25px;
-  background-color:rgba(255,255,255,0.8);
-  background-blend-mode:lighten;
+  background-color: rgba(255,255,255,0.8);
+  background-blend-mode: lighten;
 }

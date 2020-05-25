@@ -6,8 +6,9 @@
 
 .profile-container {
   background-color: #ebdcb2;
-  width: 290px;
-  height: 100%;
+  width: 100%;
+  height: 100vh;
+  font-family: cursive;
   text-align: center;
   border-left: 6px double #b38540;
   border-right: 6px double #b38540;
@@ -28,7 +29,7 @@
   height: 80px;
   border-radius: 25px;
   border: 2px solid #CC6600;
-  background-color: #ffdbc9;
+  background-color: #ddc5a2;
   margin: 0 auto 10px auto;
   text-align: center;
 }
@@ -43,42 +44,82 @@
   border: 2px solid #CC6600;
 }
 
-.btn-square-pop {
-  position: relative;
-  display: inline-block;
-  padding: 0.25em 0.5em;
-  text-decoration: none;
-  color: #FFB6C1;
-  background: #FDF5E6;/*背景色*/
-  border: solid 0.5px #FFB6C1;/*少し濃い目の色に*/
-  border-radius: 4px;/*角の丸み*/
-  box-shadow: 0 2px 2px #FFB6C1;
-  font-weight: bold;
-}
-
-.btn-square-pop:active {
-  border-bottom: solid 2px #FFB6C1;
-  box-shadow: 0 0 2px #FFB6C1;
-}
-
-.btn-square-pop, .btn-square-pop-edit {
-  text-align: center;
-}
 
 #calendar {
   background-color: #fff;
   margin-top: 20px;
 }
 
-/* index.html.erb */
-.user-container {
-  margin: 10px;
-  height: 120px;
-  border: 4px solid #fff;
-  border-radius: 25px;
+.fc-sun, .fc-sat {
+ background-color: #FFB6C1;
 }
+
+.fc-time {
+  display: none;
+}
+
+
+/* index.html.erb */
+.user-index {
+  margin: 10px auto;
+  height: 100%;
+  border-bottom: 2px solid #CC6600;
+  width: 50%;
+}
+
+.user-index-name {
+  line-height: 110px;
+  color: black;
+}
+
 
 /* show.html.erb */
 .user-art {
+  text-align: center;
+}
+
+.topic {
+  font-family: cursive;
+}
+
+.user-exhibition-title {
+  padding-left: 10px;
+}
+
+.exhibition-link {
+line-height: normal;
+}
+
+.exhibition-link-btn {
+  display: inline-block;
+}
+
+/* edit.html.erb */
+
+.edit-user-form {
+  width: 60%;
+  height: 100%;
+  padding: 10px;
+  margin: 20px auto;
+  background-color: #fff;
+  border: 2px solid #000000;
+  border-radius: 25px;
+  text-align: center;
+  font-family: cursive;
+}
+
+.edit-image {
+  margin: 0 auto;
+}
+
+/* confirm.html.erb */
+
+.confirm-container {
+  margin: 50px auto;
+  width: 80%;
+  height: 100%;
+  background-color: #fff;
+  border: 2px solid #000000;
+  border-radius: 25px;
   text-align: center;
 }

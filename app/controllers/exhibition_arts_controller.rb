@@ -3,12 +3,12 @@ class ExhibitionArtsController < ApplicationController
   def show
   end
 
-  def create
+  def create #展覧会編集画面からartを追加する場合
     exhibition =  Exhibition.find(params[:id])
-    exhibition_params[:exhibition_art_ids].each do |v|
+    exhibition_params[:exhibition_art_ids].each do |v| #配列でidが送られてくるのでeachで回す
        exhibition_art = ExhibitionArt.new
-       if v != ""
-         exhibition_art.art_id = v.to_i
+       if v != "" #配列の1つ目が空なので、それ以外を保存する
+         exhibition_art.art_id = v.to_i #文字列で送られてくるので数字に変換
          exhibition_art.exhibition_id = exhibition.id
          exhibition_art.save
        end

@@ -10,38 +10,28 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require_tree .
-//= require jquery
 //= require moment
 //= require fullcalendar
 
-$(function () {
-    function eventCalendar() {
-        return $('#calendar').fullCalendar({});
-    };
-    function clearCalendar() {
-        $('#calendar').html('');
-    };
-    $(document).on('turbolinks:load', function () {
-    eventCalendar();
-    });
-    $(document).on('turbolinks:before-cache', clearCalendar);
 
-    $('#calendar').fullCalendar({
-    events: '/events.json'
-    });
+$(function () {
+  $('#calendar').fullCalendar({
+    events: '/events.json',
+  });
 });
 
 
 $(function(){
-  $('.js-modal-btn').on('click', function(){
+  $('.modal-container').on('click', function(){
     var btnIndex = $(this).index();
     console.log(btnIndex)
-    $('.js-modal').eq(btnIndex / 4).fadeIn();
+    $('.js-modal').eq(btnIndex).fadeIn();
     return false;
   });
   $('.js-modal-close').on('click', function(){
@@ -65,3 +55,9 @@ $(function(){
     });
 });
 
+$(function(){
+  var count = $(".count").length;
+  if( count == 0 ){
+    $('.message').html('展覧会はありません');
+   }
+});

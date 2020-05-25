@@ -1,26 +1,64 @@
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+<div class="container">
+  <% if flash[:error] %>
+    <div class="flash">
+      <%= flash[:error] %>
     </div>
   <% end %>
+  <div class="form">
+    <div class="row">
+      <div class="col-xs-3 col-xs-offset-3">
+        <h2>Log in</h2>
+      </div>
+    </div>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="row">
+        <div class="col-xs-2 col-xs-offset-2">
+          <p>Email</p>
+        </div>
+        <div class="col-xs-3">
+          <div class="field">
+            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-2 col-xs-offset-2">
+          <p>パスワード</p>
+        </div>
+        <div class="col-xs-3">
+          <div class="field">
+            <%= f.password_field :password, autocomplete: "current-password" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-3 col-xs-offset-4">
+          <% if devise_mapping.rememberable? %>
+            <div class="field">
+              <%= f.check_box :remember_me %>
+              <%= f.label :remember_me %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-3 col-xs-offset-4">
+          <div class="actions">
+            <%= f.submit "Log in", class: 'btn btn-default' %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="row">
+      <div class="col-xs-3 col-xs-offset-2">
+        <h4>登録がお済みでない方</h4>
+          <%= link_to 'こちら', new_user_registration_path %> から新規登録を行ってください。
+      </div>
+    </div>
   </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

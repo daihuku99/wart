@@ -1,16 +1,21 @@
-<% if flash[:notice] %>
-  <div class="flash">
-    <%= flash[:notice] %>
-  </div>
-<% end %>
 <div class="container">
+  <% if flash[:notice] %>
+    <div class="flash">
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
+  <div class="row">
+    <h3 class="title">Arts Index</h3>
+  </div>
   <div class="row">
     <div class="sort">
-      <%= link_to '新着順', arts_path(sort: "desc"), class: 'btn btn-default' %>
+      <%= link_to '新着順', arts_path(sort: "asc"), class: 'btn btn-default' %>
       <% @tags.each do |tag| %>
         <%= link_to tag.name, arts_path(tag: tag.id), class: 'btn btn-default' %>
       <% end %>
     </div>
+  </div>
+  <div class="row">
     <div class="arts-container">
       <% @arts.each do |art| %>
         <div class="col-xs-3">

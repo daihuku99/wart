@@ -20,7 +20,7 @@ class Exhibition < ApplicationRecord
     errors.add(:end_date, "開催期間は5日間以内に設定してください") if end_date - start_date > self.second(5)
   end
 
-  def second(date)
+  def second(date) #秒数を日数に変換
     date * 24 * 60 * 60
   end
 

@@ -65,7 +65,7 @@ class ExhibitionsController < ApplicationController
 
   def period_checker #展覧会の重複開催防止。直近のend_dateより現在が過去の場合、展覧会の新規作成はできない。
     exhibition = current_user.exhibitions.maximum(:end_date)
-    if exhibition > DateTime.now.in_time_zone('Tokyo')
+    if exhibition.nil? == false and exhibition > DateTime.now.in_time_zone('Tokyo')
       redirect_to user_path(current_user), notice: '既存の展覧会が終了後、新規展覧会を作成できます。'
     end
   end

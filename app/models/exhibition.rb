@@ -9,7 +9,7 @@ class Exhibition < ApplicationRecord
   validate :date_count
 
   def start_date_check
-    errors.add(:start_date, "は今日以降のものを選択してください") if start_date < DateTime.now.in_time_zone('Tokyo')
+    errors.add(:start_date, "は現在時刻以降のものを選択してください") if start_date < DateTime.now.in_time_zone('Tokyo')
   end
 
   def end_date_check

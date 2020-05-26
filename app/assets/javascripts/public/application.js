@@ -19,7 +19,7 @@
 //= require moment
 //= require fullcalendar
 
-
+/* カレンダーを表示 */
 $(function () {
   $('#calendar').fullCalendar({
     events: '/events.json',
@@ -27,6 +27,7 @@ $(function () {
 });
 
 
+/* モーダルウィンドウ表示 */
 $(function(){
   $('.modal-container').on('click', function(){
     var btnIndex = $(this).index();
@@ -40,6 +41,8 @@ $(function(){
   });
 });
 
+
+/* 画像プレビュー機能 */
 $(function(){
     function readURL(input) {
         if (input.files && input.files[0]){
@@ -55,6 +58,8 @@ $(function(){
     });
 });
 
+
+/* 開催中の展覧会がない場合 */
 $(function(){
   var count = $(".count").length;
   if( count == 0 ){

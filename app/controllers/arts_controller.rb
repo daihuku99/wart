@@ -65,7 +65,7 @@ class ArtsController < ApplicationController
 
   private
   def art_params
-    params.require(:art).permit(:title, :detail, :image, { :tag_ids=> [] })
+    params.require(:art).permit(:title, :detail, :image, { :tag_ids=> [] }) #配列を受け取る
   end
 
   def set_art

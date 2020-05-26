@@ -50,6 +50,7 @@
 .navbar-user-name {
   margin: 0 auto;
   display: table;
+  font-family: cursive;
 }
 
 
@@ -86,6 +87,10 @@ body {
 
 .profile-image {
   border-radius: 50px;
+}
+
+.error-message {
+  list-style: none;
 }
 
 .art-image {

@@ -1,4 +1,4 @@
-<div class="col-xs-5">
+<div class="col-xs-7">
   <%= attachment_image_tag art, :image, :fill, 300, 300, format: 'jpeg' %><br>
   <div class="comment-index">
     <% art.comments.each do |comment| %>
@@ -9,7 +9,7 @@
     <div id="art_comment_block_<%= art.id %>"></div>
   </div>
 </div>
-<div class="col-xs-4">
+<div class="col-xs-5">
   <h3><%= art.title %></h3>
   <p><%= art.detail %></p>
   <div id="art_<%= art.id %>">

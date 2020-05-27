@@ -13,7 +13,7 @@ class User < ApplicationRecord
 
   attachment :profile_image
 
-  validates :name, presence: true, length: {maximum: 10}
+  validates :name, presence: true, length: {maximum: 10}, format: { with: /\A[a-z0-9]+\z/ }
   validates :introduction, length: {maximum: 30}
 
   def add_art?(art_id) #current_userが選択済みのartかどうか判別

@@ -7,7 +7,6 @@ class CommentsController < ApplicationController
     unless @comment.save #空コメントの場合はart詳細画面にリダイレクト
       redirect_to art_path(@art), notice: 'コメントが空欄です。'
     end
-    # redirect_to art_path(art)
   end
 
   def destroy
@@ -16,7 +15,6 @@ class CommentsController < ApplicationController
     @id = params[:id]
     comment.user_id = current_user.id
     comment.destroy
-    # redirect_to art_path(art)
   end
 
   private

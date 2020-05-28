@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   require 'date'
   before_action :authenticate_user!, :except => [:index, :show]
+  before_action :correct_data, only: [:show]
   before_action :correct_user, only: [:edit, :update, :confirm, :withdrawal]
   def index
     @users = User.page(params[:page]).reverse_order
@@ -35,9 +36,16 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :introduction, :profile_image)
   end
 
+  def correct_data #存在しないデータへのアクセス防止
+    @user = User.find_by_id(params[:id])
+    if @user.nil?
+      redirect_to users_path, notice: 'お探しのページは表示できません。'
+    end
+  end
+
   def correct_user #URL直打ち防止
-    @user = User.find(params[:id])
-    if @user.id != current_user.id
+    @user = User.find_by_id(params[:id])
+    if @user.nil? || @user.id != current_user.id
       redirect_to users_path, notice: 'お探しのページは表示できません。'
     end
   end

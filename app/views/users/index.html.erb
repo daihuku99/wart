@@ -1,4 +1,9 @@
 <div class="container">
+  <% if flash[:notice] %>
+    <div class="flash">
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
   <div class="row">
     <h4 class="title">Artists index</h4>
     <div class="user-container">

@@ -1,4 +1,9 @@
 <div class="container">
+  <% if flash[:notice] %>
+    <div class="flash">
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
   <div class="row">
     <div class="top-logo">
       <%= image_tag 'wart-logo-6.png', alt: 'LOGO', class: 'top-logo', size: '400*200' %>

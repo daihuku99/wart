@@ -38,7 +38,7 @@ class UsersController < ApplicationController
   def correct_user #URL直打ち防止
     @user = User.find(params[:id])
     if @user.id != current_user.id
-      redirect_to users_path
+      redirect_to users_path, notice: 'お探しのページは表示できません。'
     end
   end
 end

@@ -1,4 +1,9 @@
 <div class="container">
+  <% if flash[:notice] %>
+    <div class="flash">
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
   <div class="row">
     <div class="confirm-container">
       <h3 class="title">退会確認画面</h3>

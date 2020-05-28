@@ -59,7 +59,7 @@ class ExhibitionsController < ApplicationController
   def correct_user #URL直打ち防止
     @exhibition = Exhibition.find(params[:id])
     if @exhibition.user_id != current_user.id
-      redirect_to exhibitions_path
+      redirect_to exhibitions_path, notice: 'お探しのページは表示できません。'
     end
   end
 

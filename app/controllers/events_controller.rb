@@ -43,8 +43,8 @@ class EventsController < ApplicationController
   end
 
   def correct_user
-    @event = Event.find(params[:id])
-    if @event.user_id != current_user.id
+    @event = Event.find_by_id(params[:id])
+    if @event.nil? || @event.user_id != current_user.id
       redirect_to user_path(current_user), notice: 'お探しのページは表示できません。'
     end
   end

@@ -1,7 +1,8 @@
 class ArtsController < ApplicationController
   before_action :authenticate_user!, :except => [:show, :index]
-  before_action :set_art, only: [:show, :edit, :update, :destroy]
+  before_action :correct_data, only: [:show]
   before_action :correct_user, only: [:edit, :update, :destroy]
+  before_action :set_art, only: [:show, :edit, :update, :destroy]
   def index
     @tags = Tag.all
     if params[:tag]
@@ -72,10 +73,17 @@ class ArtsController < ApplicationController
     @art = Art.find(params[:id])
   end
 
+  def correct_data #存在しないデータへのアクセス防止
+    @art = Art.find_by_id(params[:id])
+    if @art.nil?
+      redirect_to arts_path, notice: 'お探しのページは表示できません。'
+    end
+  end
+
   def correct_user #URL直打ち防止
-    @art = Art.find(params[:id])
-    if @art.user_id != current_user.id
-      redirect_to art_path(@art)
+    @art = Art.find_by_id(params[:id])
+    if @art.nil? || @art.user_id != current_user.id
+      redirect_to arts_path, notice: 'お探しのページは表示できません。'
     end
   end
 end

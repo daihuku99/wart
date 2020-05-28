@@ -1,6 +1,7 @@
 class ExhibitionsController < ApplicationController
   require 'date'
   before_action :authenticate_user!, :except => [:index, :show]
+  before_action :correct_data, only: [:show]
   before_action :correct_user, only: [:edit, :update, :destroy]
   before_action :set_exhibition, only: [:show, :edit, :destroy, :update]
   before_action :period_checker, only: [:create, :new]
@@ -56,9 +57,16 @@ class ExhibitionsController < ApplicationController
     @exhibition = Exhibition.find(params[:id])
   end
 
+  def correct_data #存在しないデータへのアクセス防止
+    @exhibition = Exhibition.find_by_id(params[:id])
+    if @exhibition.nil?
+      redirect_to exhibitions_path, notice: 'お探しのページは表示できません。'
+    end
+  end
+
   def correct_user #URL直打ち防止
-    @exhibition = Exhibition.find(params[:id])
-    if @exhibition.user_id != current_user.id
+    @exhibition = Exhibition.find_by_id(params[:id])
+    if @exhibition.nil? || @exhibition.user_id != current_user.id
       redirect_to exhibitions_path, notice: 'お探しのページは表示できません。'
     end
   end

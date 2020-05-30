@@ -34,6 +34,8 @@ class ExhibitionsController < ApplicationController
 
   def update
     if @exhibition.update(exhibition_params)
+      event = Event.where(exhibition_id: @exhibition.id)
+      event.update(exhibition_params)
       redirect_to exhibition_path(@exhibition)
     else
       render :edit

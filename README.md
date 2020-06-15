@@ -17,14 +17,14 @@
 多数の人に自分の作品を見てほしいときや、いろんな人の作品が見たいとき
 
 ## 設計書
-###テーブル定義書
+### テーブル定義書
 https://docs.google.com/spreadsheets/d/1MHZAJAa2KizoX_bM6bCq_nm4uoi_1_QO7_PnfSvaLCU/edit?usp=sharing
 
-###ER図
+### ER図
 https://drive.google.com/file/d/19fTxCyxwNlJokP8I0-whYOsoeNuGt1le/view?usp=sharing
 
 ### 機能一覧
 https://docs.google.com/spreadsheets/d/1pcQTxVxc0ZCNChZedCJRRKdNc4CJl0O3z_RacQzesI8/edit?usp=sharing
 
-###テスト項目
+### テスト項目
 https://drive.google.com/file/d/1fgRKN75qQLjAGxqHKkmtN3Dm32CKPi4g/view?usp=sharing
